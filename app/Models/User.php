@@ -7,6 +7,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
+
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
@@ -54,7 +55,7 @@ class User extends Authenticatable
         return $this->hasOne(UserVote::class, 'user_email', 'email');
     }
 
-        public function user()
+    public function user()
     {
         return $this->belongsTo(User::class, 'user_email', 'email');
     }

@@ -16,10 +16,11 @@ return new class extends Migration
             $table->id('id_partai');
             $table->string('nama_partai', 100);
             $table->string('ketua_umum', 100);
-            $table->integer('jumlah_kasus_suap_gratifikasi');
-            $table->integer('nominal_suap_gratifikasi');
-            $table->integer('nominal_kasus_korupsi');
-            $table->integer('jumlah_kasus_korupsi');
+            $table->integer('jumlah_kasus_suap_gratifikasi')->default(0);
+            $table->integer('nominal_suap_gratifikasi')->default(0);
+            $table->integer('nominal_kasus_korupsi')->default(0);
+            $table->integer('jumlah_kasus_korupsi')->default(0);
+
             $table->timestamps();
         });
     }
