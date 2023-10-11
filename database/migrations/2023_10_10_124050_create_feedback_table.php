@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('feedback', function (Blueprint $table) {
             // Mengganti kolom 'id' menjadi 'feedback_id' sebagai primary key
             $table->id('feedback_id');
-            $table->string('nama', 100);
+            $table->string('nama', 100)->default('Anonymous');
             $table->string('email', 50);
 
             // Menambahkan foreign key constraint untuk kolom 'email'
