@@ -58,7 +58,7 @@ class AdminController extends Controller
                 ->with('error', 'Invalid data. Please check your input.');
         }
 
-        // Update the partai data
+            // Update the partai data
         $partai->nama_partai = $request->input('nama_partai');
         $partai->ketua_umum = $request->input('ketua_umum');
         $partai->jumlah_kasus_suap_gratifikasi = $request->input('jumlah_kasus_suap_gratifikasi');

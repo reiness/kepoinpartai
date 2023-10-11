@@ -115,30 +115,32 @@
     });
 
     function enableEditing(index) {
-        const row = document.querySelectorAll('.editable');
-        row.forEach(cell => {
-            cell.contentEditable = true;
-            cell.style.border = '1px solid #000';
-        });
+    const row = document.querySelectorAll('.editable');
+    row.forEach(cell => {
+        cell.contentEditable = true;
+        cell.style.border = '1px solid #000';
+    });
 
-        editButtons[index].style.display = 'none';
-        saveButtons[index].style.display = 'block';
-    }
+    // Disable the "Edit" button and enable the "Save" button
+    editButtons[index].style.display = 'none';
+    saveButtons[index].style.display = 'block';
+}
+
 
     function saveChanges(index) {
-        const row = document.querySelectorAll('.editable');
+        const rows = document.querySelectorAll('#partaiTable tbody tr');
         const partai = {
-            id_partai: row[0].textContent,
-            nama_partai: row[1].textContent,
-            ketua_umum: row[2].textContent,
-            jumlah_kasus_suap_gratifikasi: row[3].textContent,
-            nominal_suap_gratifikasi: row[4].textContent,
-            kasus_korupsi: row[5].textContent,
-            jumlah_kasus_korupsi: row[6].textContent,
+            id_partai: rows[index].querySelector('td').textContent,
+            nama_partai: rows[index].querySelector('[data-field="nama_partai"]').textContent,
+            ketua_umum: rows[index].querySelector('[data-field="ketua_umum"]').textContent,
+            jumlah_kasus_suap_gratifikasi: rows[index].querySelector('[data-field="jumlah_kasus_suap_gratifikasi"]').textContent,
+            nominal_suap_gratifikasi: rows[index].querySelector('[data-field="nominal_suap_gratifikasi"]').textContent,
+            kasus_korupsi: rows[index].querySelector('[data-field="kasus_korupsi"]').textContent,
+            jumlah_kasus_korupsi: rows[index].querySelector('[data-field="jumlah_kasus_korupsi"]').textContent,
         };
 
         // Send an AJAX request to update the data on the server
-        fetch(`{{ route('admin.updatePartai', '') }}/${partai.id_partai}`, {
+        fetch(`{{ url('admin/updatePartai') }}/${partai.id_partai}`, {
             method: 'PUT',
             headers: {
                 'X-CSRF-TOKEN': '{{ csrf_token() }}',
@@ -157,11 +159,6 @@
                     alert(data.message);
                 }
             });
-        
-        row.forEach(cell => {
-            cell.contentEditable = false;
-            cell.style.border = 'none';
-        });
     }
 </script>
 @endsection
