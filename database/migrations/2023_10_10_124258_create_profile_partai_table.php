@@ -20,7 +20,6 @@ return new class extends Migration
             $table->integer('nominal_suap_gratifikasi')->default(0);
             $table->integer('nominal_kasus_korupsi')->default(0);
             $table->integer('jumlah_kasus_korupsi')->default(0);
-
             $table->timestamps();
         });
     }

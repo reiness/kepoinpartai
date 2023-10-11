@@ -1,7 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\AdminController; // Add this line
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\ProfilePartaiController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -19,3 +20,6 @@ Route::middleware(['auth', 'auth.admin'])->group(function () {
 Auth::routes(); // This automatically sets up login, registration, and other authentication routes.
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/admin/partai-table', [AdminController::class, 'partaiTable'])->name('admin.partaiTable');
+Route::get('/admin/partai/edit/{partai}', [AdminController::class, 'editPartai'])->name('admin.editPartai');
+Route::put('/admin/partai/update/{partai}', [AdminController::class, 'updatePartai'])->name('admin.updatePartai');
