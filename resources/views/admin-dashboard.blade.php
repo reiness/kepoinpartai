@@ -47,7 +47,7 @@
                     <th>Ketua Umum</th>
                     <th>Kasus Suap/Gratifikasi</th>
                     <th>Nominal Suap/Gratifikasi</th>
-                    <th>Kasus Korupsi</th>
+                    <th>Nominal Kasus Korupsi</th>
                     <th>Jumlah Kasus Korupsi</th>
                     <th>Action</th>
                 </tr>
@@ -60,7 +60,7 @@
                     <td class="editable" data-field="ketua_umum">{{ $partai->ketua_umum }}</td>
                     <td class="editable" data-field="jumlah_kasus_suap_gratifikasi">{{ $partai->jumlah_kasus_suap_gratifikasi }}</td>
                     <td class="editable" data-field="nominal_suap_gratifikasi">{{ $partai->nominal_suap_gratifikasi }}</td>
-                    <td class="editable" data-field="kasus_korupsi">{{ $partai->kasus_korupsi }}</td>
+                    <td class="editable" data-field="nominal_kasus_korupsi">{{ $partai->nominal_kasus_korupsi }}</td>
                     <td class="editable" data-field="jumlah_kasus_korupsi">{{ $partai->jumlah_kasus_korupsi }}</td>
                     <td>
                         <button class="btn btn-primary edit-button" data-index="{{ $index }}" data-id="{{ $partai->id_partai }}">Edit</button>

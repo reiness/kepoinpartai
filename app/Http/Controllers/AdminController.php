@@ -50,7 +50,7 @@ class AdminController extends Controller
             'ketua_umum' => 'required',
             'jumlah_kasus_suap_gratifikasi' => 'integer',
             'nominal_suap_gratifikasi' => 'integer',
-            'kasus_korupsi' => 'integer',
+            'nominal_kasus_korupsi' => 'integer',
             'jumlah_kasus_korupsi' => 'integer',
         ]);
 
@@ -65,7 +65,7 @@ class AdminController extends Controller
         $partai->ketua_umum = $request->input('ketua_umum');
         $partai->jumlah_kasus_suap_gratifikasi = $request->input('jumlah_kasus_suap_gratifikasi');
         $partai->nominal_suap_gratifikasi = $request->input('nominal_suap_gratifikasi');
-        $partai->kasus_korupsi = $request->input('kasus_korupsi');
+        $partai->nominal_kasus_korupsi = $request->input('nominal_kasus_korupsi');
         $partai->jumlah_kasus_korupsi = $request->input('jumlah_kasus_korupsi');
         $partai->save();
 
