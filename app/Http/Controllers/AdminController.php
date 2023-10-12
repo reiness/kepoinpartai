@@ -24,16 +24,16 @@ class AdminController extends Controller
         return redirect()->route('admin.dashboard')->with('success', 'User has been deleted successfully.');
     }
 
-    public function editPartai($id)
-{
-    $partai = ProfilePartai::where('id_partai', $id)->first();
+//     public function editPartai($id)
+// {
+//     $partai = ProfilePartai::where('id_partai', $id)->first();
 
-    if (!$partai) {
-        return response()->json(['success' => false, 'message' => 'Partai not found']);
-    }
+//     if (!$partai) {
+//         return response()->json(['success' => false, 'message' => 'Partai not found']);
+//     }
 
-    return response()->json(['success' => true, 'partai' => $partai]);
-}
+//     return response()->json(['success' => true, 'partai' => $partai]);
+// }
 
 
     public function updatePartai(Request $request, $id)

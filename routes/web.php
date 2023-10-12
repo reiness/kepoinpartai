@@ -20,6 +20,5 @@ Auth::routes(); // This automatically sets up login, registration, and other aut
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/admin/partai-table', [AdminController::class, 'partaiTable'])->name('admin.partaiTable');
-Route::get('/admin/partai/edit/{partai}', [AdminController::class, 'editPartai'])->name('admin.editPartai');
-// Route::put('/admin/partai/update/{partai}', [AdminController::class, 'updatePartai'])->name('admin.updatePartai');
-Route::put('/admin/updatePartai/{partai}', [AdminController::class, 'updatePartai'])->name('admin.updatePartai');
+// Route::get('/admin/partai/edit/{id_partai}', [AdminController::class, 'editPartai'])->name('admin.editPartai');
+Route::put('/admin/updatePartai/{id_partai}', [AdminController::class, 'updatePartai'])->name('admin.updatePartai');
