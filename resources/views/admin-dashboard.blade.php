@@ -73,7 +73,23 @@
     </div>
     <div id="feedbacks" style="display: none;">
         <h3>Feedbacks</h3>
-        <p>Ini Feedbacks</p>
+        <table class=" table" id="feedbacks-table">
+            <thead>
+                <tr>
+                    <th>Nama</th>
+                    <th>Feedbacks</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach($feedbackData as $feedback)
+                <tr>
+                    <td>{{ $feedback->nama  }}</td>
+                    <td>{{ $feedback->feedbacks }}</td>
+    
+                </tr>
+                @endforeach
+            </tbody>
+        </table>
     </div>
 </div>
 

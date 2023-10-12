@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\ProfilePartai;
+use App\Models\Feedback;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -13,7 +14,8 @@ class AdminController extends Controller
     {
         $users = User::all();
         $partaiData = ProfilePartai::all();
-        return view('admin-dashboard', compact('users', 'partaiData'));
+        $feedbackData = Feedback::all();
+        return view('admin-dashboard', compact('users', 'partaiData', 'feedbackData'));
     }
 
     public function destroy(User $user)
@@ -69,6 +71,7 @@ class AdminController extends Controller
 
         return redirect()->route('admin.partaiTable')->with('success', 'Partai data has been updated.');
     }
+
 
     // Middleware for admin access
     public function __construct()

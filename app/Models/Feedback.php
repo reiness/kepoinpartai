@@ -7,6 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Feedback extends Model
 {
+
+    protected $fillable = [
+        'nama',
+        'feedbacks'
+    ];
+
     // Define the relationship with User table
     public function user()
     {
