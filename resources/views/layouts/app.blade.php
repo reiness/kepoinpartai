@@ -40,12 +40,16 @@
                         <a class="nav-link" href="/">Home</a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link" href="{{ route('partai_all') }}">Partai</a> <!-- New Partai link -->
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" href="/admin/dashboard">Admin Dashboard</a>
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
+    
 
     <div class="container mt-4">
         @yield('content')
@@ -54,6 +58,6 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <!-- Include your additional JavaScript scripts here -->
+    
 </body>
 </html>

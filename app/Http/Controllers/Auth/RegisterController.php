@@ -8,7 +8,7 @@ use App\Providers\RouteServiceProvider;
 use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Http\Request; // Add this line to import Request
+use Illuminate\Http\Request;
 
 class RegisterController extends Controller
 {
