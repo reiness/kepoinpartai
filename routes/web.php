@@ -29,7 +29,13 @@ Route::get('/partai_all', function () {
     return view('partai_all');
 })->name('partai_all');
 
+Route::get('/kasus_viz', function () {
+    return view('kasus_viz');
+})->name('kasus_viz');
 
+Route::get('/vote', function () {
+    return view('vote');
+})->name('vote');
 
 Route::get('/feedback', function () {
     return view('feedback');

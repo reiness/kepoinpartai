@@ -7,7 +7,7 @@
         @csrf
         <div class="form-group">
             <label for="nama">Nama</label>
-            <input type="text" name="nama" id="nama" class="form-control" value="Anonymous">
+            <input type="text" name="nama" id="nama" class="form-control nama-input" value="Anonymous">
         </div>
         <div class="form-group">
             <label for="feedbacks">Feedback</label>
@@ -21,7 +21,14 @@
 <script>
     // Check if a success message is present
     alert("{{ session('success') }}"); // Display an alert
-    document.getElementById('feedback').value = ''; // Clear the feedback text box
+    document.getElementById('feedbacks').value = ''; // Clear the feedback text box
 </script>
 @endif
+
+<style>
+    /* Add custom CSS styles here */
+    .nama-input {
+        color: rgba(128, 128, 128, 0.8); /* Transparent gray-like color */
+    }
+</style>
 @endsection
