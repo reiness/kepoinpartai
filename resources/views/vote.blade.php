@@ -27,7 +27,11 @@
             <div class="modal-body">
                 <p id="idPartaiText"></p>
                 <p id="namaPartaiText"></p>
-                <button id="voteButton" class="btn btn-primary">Vote</button>
+                <form id="voteForm" method="POST" action="{{ route('vote.vote') }}">
+                    @csrf <!-- Add this line to include the CSRF token -->
+                    <input type="hidden" name="id_partai" id="idPartaiInput">
+                    <button id="voteButton" class="btn btn-primary" type="submit">Vote</button>
+                </form>
             </div>
         </div>
     </div>
@@ -51,31 +55,8 @@
             // Display the ID Partai and Nama Partai in the modal
             jQuery('#idPartaiText').text('ID Partai: ' + idPartai);
             jQuery('#namaPartaiText').text('Apakah anda yakin ingin memilih ' + namaPartai + '?');
-        });
-
-        jQuery('#voteButton').click(function() {
-            // Make an AJAX request to vote
-            jQuery.ajax({
-                type: 'POST',
-                url: '{{ route('vote.vote') }}',
-                data: {
-                    id_partai: idPartai
-                },
-                headers: {
-                    'X-CSRF-TOKEN': jQuery('meta[name="csrf-token"]').attr('content')
-                },
-                success: function(response) {
-                    if (response.success) {
-                        alert('Vote successful');
-                    } else {
-                        alert('You have already voted');
-                    }
-                    jQuery('#partaiModal').modal('hide');
-                },
-                error: function(xhr, status, error) {
-                    console.log(xhr.responseText); // Log any error messages
-                }
-            });
+            // Set the hidden input field value with the selected id_partai
+            jQuery('#idPartaiInput').val(idPartai);
         });
     });
 </script>

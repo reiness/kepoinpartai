@@ -7,14 +7,16 @@ use Illuminate\Database\Eloquent\Model;
 
 class UserVote extends Model
 {
-     // Define the relationship with User and ProfilePartai tables
-     public function user()
-     {
-         return $this->belongsTo(User::class, 'user_email', 'email');
-     }
- 
-     public function partai()
-     {
-         return $this->belongsTo(ProfilePartai::class, 'id_partai', 'id');
-     }
+    protected $fillable = ['user_email', 'id_partai'];
+
+    // Define the relationship with User and ProfilePartai tables
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_email', 'email');
+    }
+
+    public function partai()
+    {
+        return $this->belongsTo(ProfilePartai::class, 'id_partai', 'id');
+    }
 }

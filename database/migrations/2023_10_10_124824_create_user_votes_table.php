@@ -10,7 +10,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('user_vote', function (Blueprint $table) {
+        Schema::create('user_votes', function (Blueprint $table) {
             $table->string('user_email', 100);
             $table->unsignedBigInteger('id_partai');
             $table->foreign('id_partai')->references('id_partai')->on('profile_partai')->onDelete('cascade');
@@ -29,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('user_vote');
+        Schema::dropIfExists('user_voteS');
     }
 };
