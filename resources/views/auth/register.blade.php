@@ -51,6 +51,12 @@
                         </button>
                     </form>
                 </div>
+                <div class="card-footer">
+                    <p class="text-center">{{ __("Sudah punya akun?") }}</p>
+                    <a class="btn btn-link" href="{{ route('login') }}">
+                        {{ __('Login') }}
+                    </a>
+                </div>
             </div>
         </div>
     </div>

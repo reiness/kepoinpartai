@@ -47,6 +47,12 @@
                             </div>
                         </form>
                     </div>
+                    <div class="card-footer">
+                        <p class="text-center">{{ __("Belum punya akun?") }}</p>
+                        <a class="btn btn-link" href="{{ route('register') }}">
+                            {{ __('Register') }}
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
