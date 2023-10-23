@@ -15,6 +15,8 @@ class PartaiSeederFilled extends Seeder
      */
     public function run(): void
     {
+        DB::statement('ALTER TABLE profile_partai AUTO_INCREMENT = 1');
+
         $partyData = [
             [
                 'nama_partai' => 'Partai Kebangkitan Bangsa (PKB)',

@@ -4,6 +4,7 @@
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\VoteController; 
 use App\Http\Controllers\ProfilePartaiController;
 use App\Http\Controllers\ProfileController;
 
@@ -27,6 +28,9 @@ Route::get('/admin/partai-table', [AdminController::class, 'partaiTable'])->name
 Route::put('/admin/updatePartai/{id_partai}', [AdminController::class, 'updatePartai'])->name('admin.updatePartai');
 Route::get('/logout', [App\Http\Controllers\Auth\LoginController::class, 'logout'])->name('logout');
 
+Route::get('/vote', [VoteController::class, 'index'])->name('vote');
+Route::get('/vote/{id}', [VoteController::class, 'showIdPartai']);
+
 Route::get('/partai_all', function () {
     return view('partai_all');
 })->name('partai_all');
@@ -35,9 +39,9 @@ Route::get('/kasus_viz', function () {
     return view('kasus_viz');
 })->name('kasus_viz');
 
-Route::get('/vote', function () {
-    return view('vote');
-})->name('vote');
+// Route::get('/vote', function () {
+//     return view('vote');
+// })->name('vote');
 
 Route::get('/feedback', function () {
     return view('feedback');
