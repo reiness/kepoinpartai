@@ -28,8 +28,10 @@ Route::get('/admin/partai-table', [AdminController::class, 'partaiTable'])->name
 Route::put('/admin/updatePartai/{id_partai}', [AdminController::class, 'updatePartai'])->name('admin.updatePartai');
 Route::get('/logout', [App\Http\Controllers\Auth\LoginController::class, 'logout'])->name('logout');
 
+// Route::get('/vote', [VoteController::class, 'index'])->name('vote');
+// Route::get('/vote/{id}', [VoteController::class, 'showIdPartai']);
 Route::get('/vote', [VoteController::class, 'index'])->name('vote');
-Route::get('/vote/{id}', [VoteController::class, 'showIdPartai']);
+Route::post('/vote', [VoteController::class, 'vote'])->name('vote.vote');
 
 Route::get('/partai_all', function () {
     return view('partai_all');
