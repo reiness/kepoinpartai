@@ -1,49 +1,59 @@
 <?php
 
 
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\AdminController;
-use App\Http\Controllers\ProfilePartaiController;
+
+/*
+|--------------------------------------------------------------------------
+| Web Routes
+|--------------------------------------------------------------------------
+|
+| Here is where you can register web routes for your application. These
+| routes are loaded by the RouteServiceProvider and all of them will
+| be assigned to the "web" middleware group. Make something great!
+|
+*/
 
 Route::get('/', function () {
     return view('welcome');
 });
 
-Route::middleware(['auth', 'auth.admin'])->group(function () {
-    // Admin Dashboard
-    Route::get('/admin/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
-
-    // Delete User
-    Route::delete('/admin/users/{user}', [AdminController::class, 'destroy'])->name('admin.users.destroy');
-});
-
-Auth::routes(); // This automatically sets up login, registration, and other authentication routes.
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/admin/partai-table', [AdminController::class, 'partaiTable'])->name('admin.partaiTable');
-// Route::get('/admin/partai/edit/{id_partai}', [AdminController::class, 'editPartai'])->name('admin.editPartai');
-Route::put('/admin/updatePartai/{id_partai}', [AdminController::class, 'updatePartai'])->name('admin.updatePartai');
-Route::get('/logout', [App\Http\Controllers\Auth\LoginController::class, 'logout'])->name('logout');
-
-Route::get('/partai_all', function () {
-    return view('partai_all');
-})->name('partai_all');
-
-Route::get('/kasus_viz', function () {
-    return view('kasus_viz');
-})->name('kasus_viz');
-
-Route::get('/vote', function () {
-    return view('vote');
-})->name('vote');
-
-Route::get('/feedback', function () {
-    return view('feedback');
-})->name('feedback');
-Route::post('/feedback', 'App\Http\Controllers\FeedbackController@store')->name('store.feedback');
+Route::get('/partai/PAN', function () {
+    $profile_PAN = DB::table('profile_partai')
+                    ->where('nama_partai', 'Partai Amanat Nasional (PAN)')
+                    ->first();
+    return view('partai.PAN', ['image' => 'image_12.png', 'profile_PAN' => $profile_PAN]);
+})->name('partai.PAN');
 
 
-//  PARTAIS //
-Route::get('/partai/pdip', function () {
-    return view('partai.pdip', ['image' => 'image_3.png']);
-})->name('partai.pdip');
+Route::get('/partai/NasDem', function () {
+    $profile_NasDem = DB::table('profile_partai')
+                    ->where('nama_partai', 'Partai Nasional Demokrat (NasDem)')
+                    ->first();
+    return view('partai.NasDem', ['image' => 'image_5.png', 'profile_NasDem' => $profile_NasDem]);
+})->name('partai.NasDem');
+
+
+Route::get('/partai/buruh', function () {
+    $profile_buruh = DB::table('profile_partai')
+                    ->where('nama_partai', 'Partai Buruh')
+                    ->first();
+    return view('partai.buruh', ['image' => 'image_6.png', 'profile_buruh' => $profile_buruh]);
+})->name('partai.buruh');
+
+
+Route::get('/partai/demokrat', function () {
+    $profile_demokrat = DB::table('profile_partai')
+                    ->where('nama_partai', 'Partai Demokrat')
+                    ->first();
+    return view('partai.demokrat', ['image' => 'image_14.png', 'profile_demokrat' => $profile_demokrat]);
+})->name('partai.demokrat');
+
+
+Route::get('/partai/PSI', function () {
+    $profile_PSI = DB::table('profile_partai')
+                    ->where('nama_partai', 'Partai Solidaritas Indonesia (PSI)')
+                    ->first();
+    return view('partai.PSI', ['image' => 'image_15.png', 'profile_PSI' => $profile_PSI]);
+})->name('partai.PSI');
