@@ -1,0 +1,49 @@
+body {
+    font-family: "Montserrat", sans-serif; /* Changed font to Montserrat */
+    background-color: #ED9D5E;
+    color: #333333; /* Dark Text for Contrast */
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+h1, h2, h3 {
+    color: #DB0000; 
+}
+
+p {
+    font-size: 1.2em;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.button {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 1.2em;
+    text-align: center;
+    text-decoration: none;
+    background-color: #FF4136; /* Intense Red */
+    color: #AFE7A9;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.button:hover {
+    background-color: #D50000; /* Darker Red on Hover */
+}
+
+.quote {
+    font-style: italic;
+    font-size: 1.2em;
+    margin-top: 30px;
+}
+
+.quote span {
+    font-weight: bold;
+}
