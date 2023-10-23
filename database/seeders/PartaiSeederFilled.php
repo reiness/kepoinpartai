@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\DB;
 use App\ProfilePartai;
 use Database\Factories\PartaiFactory; 
 
-class PartaiSeeder extends Seeder
+class PartaiSeederFilled extends Seeder
 {
     /**
      * Run the database seeds.
