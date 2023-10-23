@@ -1,10 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-<<<<<<< HEAD
-<div class="container d-flex flex-column justify-content-center align-items-center" style="height: 100vh;">
-    <img src="{{ asset('images/image_3.png') }}" alt="PDIP" style="max-width: 50%; max-height: 50%;">
-=======
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -30,26 +26,25 @@
 </head>
 <body>
     <div class="container d-flex flex-column justify-content-center align-items-center" style="height: 100vh;">
-        <img src="{{ asset('images/image_3.png') }}" alt="PDIP" style="max-width: 40%; max-height: 40%;">
-        <h1>PDIP</h1>
-        <h4>Ketua umum: {{ $profile_pdip -> ketua_umum }}</h4>
+        <img src="{{ asset('images/image_8.png') }}" alt="PKS" style="max-width: 40%; max-height: 40%;">
+        <h1>PKS</h1>
+        <h4>Ketua umum: {{ $profile_pks -> ketua_umum }}</h4>
         <br></br>
         <div class="left">
             <h3>Kasus Korupsi</h3>
-            <p>Total Kasus: {{ $profile_pdip -> jumlah_kasus_korupsi }}</p>
-            <p>Total Kerugian Negara: {{ $profile_pdip -> nominal_kasus_korupsi }} Miliar</p>
+            <p>Total Kasus: {{ $profile_pks -> jumlah_kasus_korupsi }}</p>
+            <p>Total Kerugian Negara: {{ $profile_pks -> nominal_kasus_korupsi }} Miliar</p>
         </div>
         
         <div class="right">
             <h3>Suap & Gratifikasi</h3>
-            <p>Total Kasus: {{ $profile_pdip -> jumlah_kasus_suap_gratifikasi }}</p>
-            <p>Total Nominal: {{ $profile_pdip -> nominal_suap_gratifikasi }} Miliar</p>
+            <p>Total Kasus: {{ $profile_pks -> jumlah_kasus_suap_gratifikasi }}</p>
+            <p>Total Nominal: {{ $profile_pks -> nominal_suap_gratifikasi }} Miliar</p>
         </div>
     </div>
 </body>
 </html>
 <div class="container d-flex flex-column justify-content-center align-items-center" style="height: 100vh;">
->>>>>>> c8d218cca02a72a723d05219ba62ca8d2d43c6f2
     <p class="mt-3">Informasi yang ditampilkan tidak tepat? Yuk kirim feedbackmu!</p>
     <a href="{{ route('feedback') }}" class="btn btn-primary mt-3">Feedback</a>
 </div>
