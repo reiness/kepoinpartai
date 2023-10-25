@@ -7,6 +7,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\VoteController; 
 use App\Http\Controllers\ProfilePartaiController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ChartController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -42,9 +43,8 @@ Route::get('/kasus_viz', function () {
     return view('kasus_viz');
 })->name('kasus_viz');
 
-Route::get('/get-ChartData', function () {
-    return app()->make(\App\Http\Controllers\ChartController::class)();
-})->name('chart.data');
+
+Route::get('/getChartData', [ChartController::class, 'getChartData'])->name('chart.data');
 
 
 // Route::get('/vote', function () {

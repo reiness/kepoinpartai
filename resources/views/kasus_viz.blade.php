@@ -8,13 +8,13 @@
                 <div class="card-header">{{ __('Kasus Viz') }}</div>
 
                 <div class="card-body">
-                    <h1>Visualisasi</h1>
-                    <canvas id="myChart" width="800" height="400"></canvas>
                 </div>
             </div>
         </div>
     </div>
 </div>
+<h1>Visualisasi voting user untuk setiap partai</h1>
+<canvas id="myChart" width="1600" height="900"></canvas> <!-- Adjust height as needed -->
 
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -24,10 +24,12 @@
         .then(function (response) {
             var data = response.data;
 
-            var idPartai = data.map(function(item) {
-                return item.id_partai;
+            var labels = data.map(function (item) {
+                var matches = item.nama_partai.match(/\(([^)]+)\)/);
+                return matches ? matches[1] : item.nama_partai;
             });
-            var count = data.map(function(item) {
+
+            var count = data.map(function (item) {
                 return item.count;
             });
 
@@ -36,7 +38,7 @@
             var myChart = new Chart(ctx, {
                 type: 'bar',
                 data: {
-                    labels: idPartai, // x-axis: id_partai
+                    labels: labels, // x-axis: extracted text or full nama_partai
                     datasets: [{
                         label: 'Count',
                         data: count, // y-axis: count of id_partai
@@ -47,6 +49,12 @@
                 },
                 options: {
                     scales: {
+                        x: {
+                            maxRotation: 0, // Prevent label rotation
+                            minRotation: 0,
+                            autoSkip: true, // Enable auto-skipping of labels
+                            maxTicksLimit: 10, // Maximum number of labels to display without skipping
+                        },
                         y: {
                             beginAtZero: true,
                         }
@@ -58,5 +66,4 @@
             console.log(error);
         });
 </script>
-
 @endsection
