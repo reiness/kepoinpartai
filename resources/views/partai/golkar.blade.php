@@ -40,6 +40,8 @@
             <h3>Suap & Gratifikasi</h3>
             <p>Total Kasus: {{ $profile_golkar -> jumlah_kasus_suap_gratifikasi }}</p>
             <p>Total Nominal: {{ $profile_golkar -> nominal_suap_gratifikasi }} Miliar</p>
+            <h3>Fakta menarik:</h3> 
+            <p>Sempat terdapat isu didesaknya musyawarah umum karena perolehan suara 2019 dianggap kurang memuaskan</p>
         </div>
     </div>
 </body>
