@@ -40,6 +40,8 @@
             <h3>Suap & Gratifikasi</h3>
             <p>Total Kasus: {{ $profile_gerindra -> jumlah_kasus_suap_gratifikasi }}</p>
             <p>Total Nominal: {{ $profile_gerindra -> nominal_suap_gratifikasi }} Miliar</p>
+            <h3>Fakta menarik:</h3> 
+            <p>Ketua umumnya, Prabowo, pernah mencalonkan diri sebagai presiden sebanyak 3 kali dan gagal 2 kali</p>
         </div>
     </div>
 </body>
