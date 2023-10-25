@@ -34,6 +34,8 @@
             <h3>Kasus Korupsi</h3>
             <p>Total Kasus: {{ $profile_gelora -> jumlah_kasus_korupsi }}</p>
             <p>Total Kerugian Negara: {{ $profile_gelora -> nominal_kasus_korupsi }} Miliar</p>
+            <h3>Fakta menarik:</h3>
+            <p>Logo Parta Gelora terinspirasi oleh filosofi Tionghoa, Yin dan Yang, menurut Fahri Hamzah. Warna biru melambangkan langit dan air Indonesia, merah melambangkan kekuatan, dan putih melambangkan niat baik partai untuk mengangkat Indonesia ke jenjang yang baru.</p>
         </div>
         
         <div class="right">

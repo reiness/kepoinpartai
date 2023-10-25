@@ -40,6 +40,8 @@
             <h3>Suap & Gratifikasi</h3>
             <p>Total Kasus: {{ $profile_ppp -> jumlah_kasus_suap_gratifikasi }}</p>
             <p>Total Nominal: {{ $profile_ppp -> nominal_suap_gratifikasi }} Miliar</p>
+            <h3>Fakta menarik:</h3>
+            <p>PPP memulai perjalanan mereka dengan bangga menampilkan simbol Ka'bah - situs suci penting dalam agama Islam - sebagai logo mereka. Namun, kemudian memutuskan untuk mengubah logo mereka menjadi bintang lima berwarna kuning emas. Namun sekarang PPP kembali memutuskan untuk mengembalikan simbol ikonik Ka'bah, sesuai dengan ideologi mereka.</p>
         </div>
     </div>
 </body>

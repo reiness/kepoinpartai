@@ -40,6 +40,8 @@
             <h3>Suap & Gratifikasi</h3>
             <p>Total Kasus: {{ $profile_pkn -> jumlah_kasus_suap_gratifikasi }}</p>
             <p>Total Nominal: {{ $profile_pkn -> nominal_suap_gratifikasi }} Miliar</p>
+            <h3>Fakta menarik:</h3>
+            <p>Pendirian PKN di tanggal 28 Oktober bertepatan pada peringatan Hari Sumpah Pemuda dan kongres terakhir Partai Karya Perjuangan sebelum berganti nama, sekaligus mengubah bendera partai menjadi burung Garuda.</p>
         </div>
     </div>
 </body>

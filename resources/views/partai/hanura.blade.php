@@ -40,6 +40,8 @@
             <h3>Suap & Gratifikasi</h3>
             <p>Total Kasus: {{ $profile_hanura -> jumlah_kasus_suap_gratifikasi }}</p>
             <p>Total Nominal: {{ $profile_hanura -> nominal_suap_gratifikasi }} Miliar</p>
+            <h3>Fakta menarik:</h3>
+            <p>Pendiri dan mantan Ketua Partai Hanura, Wiranto, merelakan lebih dari 100 mantan kader Hanura untuk pindah dan bergabung dengan Partai Persatuan Pembangunan (PPP) sebagai kandidat legislatif baru di Pemilu 2024. Wiranto mengaku, dirinya tidak akan memaksa dan memberikan kebebasan pada kadernya untuk memilih rumah perjuangan yang sesuai dengan aspirasi politiknya.</p>
         </div>
     </div>
 </body>

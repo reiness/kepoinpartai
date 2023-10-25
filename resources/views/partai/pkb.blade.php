@@ -40,6 +40,8 @@
             <h3>Suap & Gratifikasi</h3>
             <p>Total Kasus: {{ $profile_pkb -> jumlah_kasus_suap_gratifikasi }}</p>
             <p>Total Nominal: {{ $profile_pkb -> nominal_suap_gratifikasi }} Miliar</p>
+            <h3>Fakta menarik:</h3>
+            <p>Kontes Miss World 2013 sempat menimbulkan kehebohan di Indonesia, karena beberapa umat Muslim garis keras menganggap acara tersebut tidak menghormati umat Islam. Tapi plottwist: Meskipun Partai Kebangkitan Bangsa (PKB) adalah partai berbasis Islam, mereka mengejutkan semua orang dengan merilis pernyataan dukungan kepada keputusan Indonesia menjadi tuan rumah Miss World 2013 di Bali.</p>
         </div>
     </div>
 </body>

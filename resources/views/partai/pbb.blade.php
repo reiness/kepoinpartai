@@ -40,6 +40,8 @@
             <h3>Suap & Gratifikasi</h3>
             <p>Total Kasus: {{ $profile_pbb -> jumlah_kasus_suap_gratifikasi }}</p>
             <p>Total Nominal: {{ $profile_pbb -> nominal_suap_gratifikasi }} Miliar</p>
+            <h3>Fakta menarik:</h3>
+            <p>Artis eksentrik, Aldi Taher sempat menyalonkan diri menjadi perwakilan di Dewan Perwakilan Rakyat (DPR) untuk PBB dan Perindo. Wawancaranya di TvOne menjadi meme ketika dia memberikan jawaban-jawaban ‘unik’ saat ditanya tentang isu-isu penting.</p>
         </div>
     </div>
 </body>
