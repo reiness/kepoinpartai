@@ -29,6 +29,7 @@
         <img src="{{ asset('images/image_12.png') }}" alt="PAN" style="max-width: 50%; max-height: 50%;">
         <h1>PAN</h1>
         <h4>Ketua umum: {{ $profile_PAN -> ketua_umum }}</h4>
+        <p>Ideologi: Demokrasi Islam dan Nasionalisme Religius</p>
         <br></br>
         <div class="left">
             <h3>Kasus Korupsi</h3>
@@ -40,6 +41,8 @@
             <h3>Suap & Gratifikasi</h3>
             <p>Total Kasus: {{ $profile_PAN -> jumlah_kasus_suap_gratifikasi }}</p>
             <p>Total Nominal: {{ $profile_PAN -> nominal_suap_gratifikasi }} Miliar</p>
+            <h3>Fakta menarik:</h3>
+            <p>Pada tanggal (11/2/2020) di mana agenda yang dilaksanakan yaitu penetapan tatatertib berlangsung ricuh. Sebab para peserta saling melempar air mineral gelas.Tidak hanya itu, peserta juga saling melempar kursi. Sejumlah peserta salingmeneriakkan nama Zulfikli dan Mulfachri. Keduanya merupakan calon ketua umum partai PAN.</p>
         </div>
     </div>
 </body>

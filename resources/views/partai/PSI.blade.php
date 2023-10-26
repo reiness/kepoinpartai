@@ -29,6 +29,7 @@
         <img src="{{ asset('images/image_15.png') }}" alt="PSI" style="max-width: 50%; max-height: 50%;">
         <h1>PSI</h1>
         <h4>Ketua umum: {{ $profile_PSI -> ketua_umum }}</h4>
+        <p>Ideologi: Pancasila Sekularisme, Demokrasi Sosial, Republikanisme Progresivisme, Hak Minoritas, Sosialisme</p>
         <br></br>
         <div class="left">
             <h3>Kasus Korupsi</h3>
@@ -40,6 +41,8 @@
             <h3>Suap & Gratifikasi</h3>
             <p>Total Kasus: {{ $profile_PSI -> jumlah_kasus_suap_gratifikasi }}</p>
             <p>Total Nominal: {{ $profile_PSI -> nominal_suap_gratifikasi }} Miliar</p>
+            <h3>Fakta menarik:</h3>
+            <p>PSI memiliki sebuah program bernama Kartu Sakti. Kartu SAKTI sendiri adalah Kartu Solidaritas Anti Korupsi dan Intoleransi yang akan diberikan kepada setiap orang yang mendonasikan sejumlah dana iuran anggota secara rutin. Kartu ini dapat digunakan dalam berbagai kegiatan PSI yang bersifat online maupun offline.</p>
         </div>
     </div>
 </body>

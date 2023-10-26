@@ -29,6 +29,7 @@
         <img src="{{ asset('images/image_14.png') }}" alt="demokrat" style="max-width: 50%; max-height: 50%;">
         <h1>demokrat</h1>
         <h4>Ketua umum: {{ $profile_demokrat -> ketua_umum }}</h4>
+        <p>Ideologi: Pancasila, Sentrisme, Nasionalisme Religius, Humanisme, Pluralisme</p>
         <br></br>
         <div class="left">
             <h3>Kasus Korupsi</h3>
@@ -40,6 +41,8 @@
             <h3>Suap & Gratifikasi</h3>
             <p>Total Kasus: {{ $profile_demokrat -> jumlah_kasus_suap_gratifikasi }}</p>
             <p>Total Nominal: {{ $profile_demokrat -> nominal_suap_gratifikasi }} Miliar</p>
+            <h3>Fakta menarik:</h3>
+            <p>Ketua Umum Demokrat Agus Harimurti Yudhoyono (AHY) dan Kepala Staf Kepresidenan Moeldoko sempat berebut posisi di 2021, dan hampir menghancurkan nama baik Partai Demokrat. Sebagai Panglima TNI di masa kepresidenan Yudhoyono, Moeldoko disebut pengkhianat bagi Demokrat, karena coba mengklaim kemenangan dalam Kongres Luar Biasa (KLB) Demokrat di Deli Serdang.</p>
         </div>
     </div>
 </body>

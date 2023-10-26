@@ -29,6 +29,7 @@
         <img src="{{ asset('images/image_5.png') }}" alt="NasDem" style="max-width: 50%; max-height: 50%;">
         <h1>NasDem</h1>
         <h4>Ketua umum: {{ $profile_NasDem -> ketua_umum }}</h4>
+        <p>Ideologi: Pancasila, Nasionalisme, Sekularisme. </p>
         <br></br>
         <div class="left">
             <h3>Kasus Korupsi</h3>
@@ -40,6 +41,8 @@
             <h3>Suap & Gratifikasi</h3>
             <p>Total Kasus: {{ $profile_NasDem -> jumlah_kasus_suap_gratifikasi }}</p>
             <p>Total Nominal: {{ $profile_NasDem -> nominal_suap_gratifikasi }} Miliar</p>
+            <h3>Fakta menarik:</h3>
+            <p>Ketua DPP Partai NasDem Willy Aditya mengatakan terbentuknya Koalisi Perubahan (Partai NasDem, PKS, NasDem) tidak menutup kemungkinan tiga partai membuka peluang bagi parpol lain untuk turut bergabung untuk mendukung Anies Baswedan. Menurut Willy membuka pintu selebar-lebarnya bagi parpol lain untuk bergabung dengan Koalisi Perubahan juga menjadi salah satu strategi untuk memenangkan Anies pada gelaran Pemilu 2024.</p>
         </div>
     </div>
 </body>
