@@ -19,8 +19,8 @@
         }
         .left, .right {
             display: inline-block;
-            width: 45%;
-            text-align: left;
+            width: 100%;
+            text-align: center;
         }
     </style>
 </head>
@@ -29,6 +29,7 @@
         <img src="{{ asset('images/image_8.png') }}" alt="PKS" style="max-width: 40%; max-height: 40%;">
         <h1>PKS</h1>
         <h4>Ketua umum: {{ $profile_pks -> ketua_umum }}</h4>
+        <p>Ideologi: Islamisme, konservatisme sosial</p>
         <br></br>
         <div class="left">
             <h3>Kasus Korupsi</h3>
