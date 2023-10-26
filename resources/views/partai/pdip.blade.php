@@ -19,16 +19,17 @@
         }
         .left, .right {
             display: inline-block;
-            width: 45%;
-            text-align: left;
+            width: 100%;
+            text-align: center;
         }
     </style>
 </head>
 <body>
     <div class="container d-flex flex-column justify-content-center align-items-center" style="height: 100vh;">
-        <img src="{{ asset('images/image_3.png') }}" alt="PDIP" style="max-width: 40%; max-height: 40%;">
+        <img src="{{ asset('images/image_3.png') }}" alt="PDIP" style="max-width: 30%; max-height: 30%;">
         <h1>PDIP</h1>
         <h4>Ketua umum: {{ $profile_pdip -> ketua_umum }}</h4>
+        <p>Ideologi: Pancasila, nasionalisme ekonomi, nasionalisme Indonesia, populisme, soekarnoisme, sekularisme</p>
         <br></br>
         <div class="left">
             <h3>Kasus Korupsi</h3>
