@@ -19,8 +19,8 @@
         }
         .left, .right {
             display: inline-block;
-            width: 45%;
-            text-align: left;
+            width: 100%;
+            text-align: center;
         }
     </style>
 </head>
@@ -29,6 +29,7 @@
         <img src="{{ asset('images/image_1.png') }}" alt="PKB" style="max-width: 50%; max-height: 50%;">
         <h1>pkb</h1>
         <h4>Ketua umum: {{ $profile_pkb -> ketua_umum }}</h4>
+        <p>Ideologi: Pancasila, Demokrasi Islam, Liberalisme, Pluralisme</p>
         <br></br>
         <div class="left">
             <h3>Kasus Korupsi</h3>
