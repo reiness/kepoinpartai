@@ -1,6 +1,7 @@
 <?php
 
 
+
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
@@ -111,6 +112,30 @@ Route::get('/partai/gerindra', function () {
     return view('partai.gerindra', ['image' => 'image_2.png', 'profile_gerindra' => $profile_gerindra]);
 })->name('partai.gerindra');
 
+Route::get('/partai/PAN', function () {
+    $profile_PAN = DB::table('profile_partai')
+                    ->where('nama_partai', 'Partai Amanat Nasional (PAN)')
+                    ->first();
+
+    return view('partai.PAN', ['image' => 'image_12.png', 'profile_PAN' => $profile_PAN]);
+})->name('partai.PAN');
+
+
+Route::get('/partai/NasDem', function () {
+    $profile_NasDem = DB::table('profile_partai')
+                    ->where('nama_partai', 'Partai Nasional Demokrat (NasDem)')
+                    ->first();
+    return view('partai.NasDem', ['image' => 'image_5.png', 'profile_NasDem' => $profile_NasDem]);
+})->name('partai.NasDem');
+
+
+Route::get('/partai/buruh', function () {
+    $profile_buruh = DB::table('profile_partai')
+                    ->where('nama_partai', 'Partai Buruh')
+                    ->first();
+    return view('partai.buruh', ['image' => 'image_6.png', 'profile_buruh' => $profile_buruh]);
+})->name('partai.buruh');
+
 Route::get('/partai/golkar', function () {
     $profile_golkar = DB::table('profile_partai')
                     ->where('nama_partai', 'Partai Golongan Karya (Golkar)')
@@ -125,9 +150,25 @@ Route::get('/partai/perindo', function () {
     return view('partai.perindo', ['image' => 'image_16.png', 'profile_perindo' => $profile_perindo]);
 })->name('partai.perindo');
 
-Route::get('/partai/pks', function () {
-    $profile_pks = DB::table('profile_partai')
-                    ->where('nama_partai', 'Partai Keadilan Sejahtera (PKS)')
+Route::get('/partai/demokrat', function () {
+    $profile_demokrat = DB::table('profile_partai')
+                    ->where('nama_partai', 'Partai Demokrat')
                     ->first();
-    return view('partai.pks', ['image' => 'image_8.png', 'profile_pks' => $profile_pks]);
-})->name('partai.pks');
+    return view('partai.demokrat', ['image' => 'image_14.png', 'profile_demokrat' => $profile_demokrat]);
+})->name('partai.demokrat');
+
+
+Route::get('/partai/PSI', function () {
+    $profile_PSI = DB::table('profile_partai')
+                    ->where('nama_partai', 'Partai Solidaritas Indonesia (PSI)')
+                    ->first();
+
+    return view('partai.PSI', ['image' => 'image_15.png', 'profile_PSI' => $profile_PSI]);})->name('partai.PSI');
+
+    Route::get('/partai/pks', function () {
+        $profile_pks = DB::table('profile_partai')
+                        ->where('nama_partai', 'Partai Keadilan Sejahtera (PKS)')
+                        ->first();
+        return view('partai.pks', ['image' => 'image_8.png', 'profile_pks' => $profile_pks]);
+    })->name('partai.pks');
+    
