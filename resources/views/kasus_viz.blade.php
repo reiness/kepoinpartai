@@ -13,8 +13,13 @@
         </div>
     </div>
 </div>
-<h1>Visualisasi voting user untuk setiap partai</h1>
-<canvas id="myChart" width="1600" height="900"></canvas> <!-- Adjust height as needed -->
+<h1>Visualisasi Voting User</h1>
+<canvas id="voteCount" width="1600" height="900"></canvas>
+<h1>Visualisasi Suap & Gratifikasi</h1>
+<canvas id="nominalSuapGratifikasi" width="1600" height="900"></canvas>
+<h1>Visualisasi Korupsi</h1>
+<canvas id="nominalKasusKorupsi" width="1600" height="900"></canvas>
+
 
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -33,9 +38,19 @@
                 return item.count;
             });
 
-            // Create a bar chart
-            var ctx = document.getElementById('myChart').getContext('2d');
-            var myChart = new Chart(ctx, {
+            var dataSuapGratifikasi = data.map(function (dataPoint) {
+                return dataPoint.nominal_suap_gratifikasi; // Extract nominal_suap_gratifikasi
+            });
+            
+            var dataKasusKorupsi = data.map(function (dataPoint) {
+                return dataPoint.nominal_kasus_korupsi; // Extract nominal_kasus_korupsi
+            });
+            
+            ////////////////////////////////////////////////////
+
+            // Create a bar chart for voteCount
+            var ctx = document.getElementById('voteCount').getContext('2d');
+            var voteCount = new Chart(ctx, {
                 type: 'bar',
                 data: {
                     labels: labels, // x-axis: extracted text or full nama_partai
@@ -61,6 +76,75 @@
                     }
                 }
             });
+
+            /////////////////////////////////////////////////////////
+
+            // Create a bar chart for nominalSuapGratifikasi
+            var ctx = document.getElementById('nominalSuapGratifikasi').getContext('2d');
+            var nominalSuapGratifikasi = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: labels, // x-axis: extracted text or full nama_partai
+                    datasets: [{
+                        label: 'Suap&Gratifikasi dalam Miliar Rupiah',
+                        data: dataSuapGratifikasi, // y-axis: nominal_suap_gratifikasi from ProfilePartai model
+                        backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                        borderColor: 'rgba(75, 192, 192, 1)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        x: {
+                            maxRotation: 0, // Prevent label rotation
+                            minRotation: 0,
+                            autoSkip: true, // Enable auto-skipping of labels
+                            maxTicksLimit: 10, // Maximum number of labels to display without skipping
+                        },
+                        y: {
+                            beginAtZero: true,
+                        }
+                    }
+                }
+            });
+
+            
+
+            ///////////////////////////////////////////////////////////////////////
+
+
+            // Create a bar chart for nominalKasusKorupsi
+            var ctx = document.getElementById('nominalKasusKorupsi').getContext('2d');
+            var nominalKasusKorupsi = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: labels, // x-axis: extracted text or full nama_partai
+                    datasets: [{
+                        label: 'Korupsi dalam Miliar Rupiah',
+                        data: dataKasusKorupsi, 
+                        backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                        borderColor: 'rgba(75, 192, 192, 1)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        x: {
+                            maxRotation: 0, // Prevent label rotation
+                            minRotation: 0,
+                            autoSkip: true, // Enable auto-skipping of labels
+                            maxTicksLimit: 10, // Maximum number of labels to display without skipping
+                        },
+                        y: {
+                            beginAtZero: true,
+                        }
+                    }
+                }
+            });
+
+
+
+            
         })
         .catch(function (error) {
             console.log(error);
