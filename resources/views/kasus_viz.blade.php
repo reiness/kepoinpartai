@@ -86,10 +86,10 @@
                 data: {
                     labels: labels, // x-axis: extracted text or full nama_partai
                     datasets: [{
-                        label: 'Suap&Gratifikasi dalam Miliar Rupiah',
+                        label: 'Suap & Gratifikasi dalam Miliar Rupiah',
                         data: dataSuapGratifikasi, // y-axis: nominal_suap_gratifikasi from ProfilePartai model
-                        backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                        borderColor: 'rgba(75, 192, 192, 1)',
+                        backgroundColor: 'rgba(1, 1, 1, 0.5)',
+                        borderColor: 'rgba(0, 0, 0, 1)',
                         borderWidth: 1
                     }]
                 },
@@ -122,8 +122,8 @@
                     datasets: [{
                         label: 'Korupsi dalam Miliar Rupiah',
                         data: dataKasusKorupsi, 
-                        backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                        borderColor: 'rgba(75, 192, 192, 1)',
+                        backgroundColor: 'rgba(255, 10, 60, 0.4)',
+                        borderColor: 'rgba(255, 50, 50, 1)',
                         borderWidth: 1
                     }]
                 },
