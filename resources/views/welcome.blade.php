@@ -62,7 +62,7 @@
 <div class="container">
     <h1>Get To Know Your <span class="typed-text Special-word"></span><span class="cursor">&nbsp;</span></h1>
   </div>
-    
+  
   <script src="{{ asset('js/app2.js') }}"></script>
 
 </section>
@@ -73,7 +73,14 @@
         <h1>Go to <span class="special-word">Visualization</span> Page Now</h1>
     </div>
     <div class="content">
-        <button class="button-86">Visual page</button>
+        <button id="voteButton" class="button-86">Visual page</button>
+    <script>
+    // Add an event listener to the button
+    document.getElementById('voteButton').addEventListener('click', function() {
+        // Redirect to the desired URL
+        window.location.href = "{{ route('vote') }}";
+    });
+    </script>
     </div>
 </div>
 </section>

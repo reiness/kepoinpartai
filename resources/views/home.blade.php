@@ -27,6 +27,7 @@
 
         .card-body {
             text-align: center; /* Center align the content */
+
             font-size: 20px; /* Make the font bigger */
         }
 
@@ -68,6 +69,18 @@
 
                     {{ __('You are logged in!') }}
 
+                    <style>
+                        .logout-link {
+                          text-decoration: none; /* Remove underline */
+                          color: inherit; /* Inherit the color from the parent */
+                        }
+                      
+                        .logout-link:hover {
+                          text-decoration: none; /* Remove underline on hover */
+                          color: inherit; /* Inherit the color from the parent */
+                        }
+                      </style>
+
                     <a class="logout-link" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                         {{ __('Log out') }}
                     </a>
@@ -75,6 +88,18 @@
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                         @csrf
                     </form>
+
+                    <style>
+                        .button-86 a {
+                          text-decoration: none; /* Remove underline */
+                          color: inherit; /* Inherit the color from the parent */
+                        }
+                      
+                        .button-86 a:hover {
+                          text-decoration: none; /* Remove underline on hover */
+                          color: inherit; /* Inherit the color from the parent */
+                        }
+                      </style>
 
                     <div class="button-86">
                         <a href="{{ route('kasus_viz') }}">Kasus visualisasi</a>
