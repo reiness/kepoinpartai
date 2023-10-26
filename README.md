@@ -1,4 +1,12 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="D:\coding-project\kepoinpartai\flow.svg" width="400" alt="Laravel Logo"></a></p>
+<div align="center">
+  <h1 style="margin: 0;">Welcome to KepoinPartai's GitHub!</h1>
+  <p style="margin: 0;"><strong>Kelompok 3 | Basis Data SD-A2</strong></p>
+  <br><br>
+  <p align="center">
+    <a href="https://laravel.com" target="_blank"><img src="miko.jpg" alt="Welcome!"></a>
+  </p>
+</div>
+
 
 <p align="center">
 <a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
@@ -7,60 +15,89 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
-## About Laravel
+---
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Our Members
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+<div style="text-align: center;">
+  <table style="margin: 0 auto; width: 70%;">
+    <tr>
+      <th>Name</th>
+      <th>GitHub</th>
+      <th>Student Number</th>
+    </tr>
+    <tr>
+      <td>Michael Adi Herryanto</td>
+      <td><a href="https://github.com/michaelah0">@michaelah0</a></td>
+      <td>162112133024</td>
+    </tr>
+    <tr>
+      <td>Vinnie Quartasyeba Tarigan</td>
+      <td><a href="https://github.com/vinnieqt">@vinnieqt</a></td>
+      <td>162112133051</td>
+    </tr>
+    <tr>
+      <td>Naila Shakira</td>
+      <td><a href="https://github.com/bluepeailla">@bluepeailla</a></td>
+      <td>162112133052</td>
+    </tr>
+    <tr>
+      <td>Ridho Pandhu Afrianto</td>
+      <td><a href="https://github.com/reiness">@reiness</a></td>
+      <td>162112133062</td>
+    </tr>
+    <tr>
+      <td>Dhia Alif Tajriyaani Azhar</td>
+      <td><a href="https://github.com/Zzybeanie">@Zzybeanie</a></td>
+      <td>162112133079</td>
+    </tr>
+  </table>
+</div>
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+<br><br>
 
-## Learning Laravel
+## Our Flow
+<p align="center"><a href="https://laravel.com" target="_blank"><img src="xflow.png" width="1080" alt="Laravel Logo"></a></p>
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+<br>
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+# Topik Studi Kasus
 
-## Laravel Sponsors
+**Peran Website 'Kepoin Partai' dalam Meningkatkan Kesadaran Politik dan Partisipasi Masyarakat di Indonesia**
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+**Bidang:** Sosial, politik
+<br>
+## Deskripsi Bidang Aplikasi
 
-### Premium Partners
+'Kepoin Partai' adalah sebuah website yang bertujuan untuk menyediakan platform online yang komprehensif dan informatif mengenai partai politik di Indonesia. Website ini akan mengintegrasikan data dari berbagai partai politik yang akan bersaing dalam Pemilihan Umum 2024. Website ini dirancang untuk memberikan akses mudah kepada masyarakat umum untuk memahami profil, sejarah, dan posisi partai-partai politik, serta data terkait seperti kasus korupsi dan hasil polling pengguna.
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+## Aturan Bisnis
+- Setiap partai politik yang akan berpartisipasi dalam Pemilu harus terdaftar dalam sistem.
+- Setiap halaman profil partai politik harus menyajikan data yang akurat dan terbaru.
+- Informasi tentang tokoh-tokoh kunci dalam partai politik harus diperbarui secara berkala.
+- Data kasus korupsi dan kerugian keuangan negara harus diupdate secara real-time jika ada perkembangan baru.
+- Pengguna yang ingin berpartisipasi dalam polling harus terlebih dahulu login ke akun mereka.
+- Setiap polling yang dilakukan oleh pengguna harus dicatat dan diakses oleh admin untuk analisis.
 
-## Contributing
+## Asumsi
+- Sumber data yang digunakan untuk profil partai politik bersifat akurat dan dapat diandalkan.
+- Pengguna akan memberikan masukan yang jujur dalam polling.
+- Website ini akan diakses oleh berbagai kalangan masyarakat, termasuk yang memiliki minat politik yang beragam.
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+## Masalah
+- Mengintegrasikan data dari berbagai sumber yang berbeda untuk menyajikan profil partai politik secara akurat dan konsisten.
+- Menjaga keamanan data yang sensitif, terutama data pengguna yang login.
+- Menyediakan visualisasi data yang informatif untuk memudahkan pengguna dalam memahami informasi politik.
+- Memastikan bahwa data yang disajikan selalu diperbarui sesuai dengan perkembangan terkini.
+- Mengelola dan menganalisis data hasil polling pengguna dengan efisien.
 
-## Code of Conduct
+## Latar Belakang
+Kepemimpinan presiden Jokowi dengan program-programnya telah menuntun Indonesia selama hampir sepuluh tahun. Waktu pemilu untuk memilih presiden yang dicalonkan partai politik pun mulai mendekat. Warna kampanye mulai terlukis perlahan-lahan di kota-kota besar, Surabaya tidak terkecuali. UUD NRI 1945 membatasi masa jabatan presiden menjadi dua kali periode berturut-turut di mana orang yang sama tidak dapat mencalonkan menjadi presiden kembali. Suatu peraturan yang secara tidak langsung membuat rakyat harus berpikir lebih dalam karena tidak dapat memilih orang yang sama kembali untuk ketiga kalinya. 'Kepoin Partai' adalah suatu halaman yang berisi informasi-informasi hasil rangkuman data suatu partai politik. Pengunjung dapat menengok partai yang mencalonkan calon kepala negara dengan harapan agar keputusan berdasarkan informasi dan data dapat lebih mudah dibuat. Sebagian mungkin masih akan memilih secara acak atau bahkan tidak memilih dengan sengaja melubangi setiap bagian dari kertas pemilu maupun tidak melubangi sama sekali, namun besar harapan kami bahwa informasi yang kami sediakan dapat memperkokoh maupun mengubah pilihan seseorang.
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+## Mission Statement
+Database kami menjadi pondasi utama dalam mencapai tujuan kami. Database yang canggih dan terstruktur akan membantu kami:
+- Memberikan pemahaman yang lebih mendalam tentang partai-partai politik, menjawab pertanyaan masyarakat tentang latar belakang, ideologi, dan program partai.
+- Menghasilkan analisis yang akurat mengenai rekam jejak partai politik, membantu pemilih untuk membuat keputusan yang terinformasi.
+- Menyediakan akses mudah dan cepat ke data aktual, memungkinkan masyarakat untuk mengikuti perkembangan politik secara real-time.
+- Mendorong partis
