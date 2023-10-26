@@ -1,7 +1,5 @@
 <?php
 
-
-
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
@@ -57,10 +55,12 @@ Route::get('/feedback', function () {
 })->name('feedback');
 Route::post('/feedback', 'App\Http\Controllers\FeedbackController@store')->name('store.feedback');
 
-
-//  PARTAIS //
+//  PARTAIS  //
 Route::get('/partai/pdip', function () {
-    return view('partai.pdip', ['image' => 'image_3.png']);
+    $profile_pdip = DB::table('profile_partai')
+                    ->where('nama_partai', 'Partai Demokrasi Indonesia Perjuangan (PDIP)')
+                    ->first();
+    return view('partai.pdip', ['image' => 'image_3.png', 'profile_pdip' => $profile_pdip]);
 })->name('partai.pdip');
 
 Route::middleware(['auth', 'auth.admin'])->group(function () {
@@ -172,3 +172,79 @@ Route::get('/partai/PSI', function () {
         return view('partai.pks', ['image' => 'image_8.png', 'profile_pks' => $profile_pks]);
     })->name('partai.pks');
     
+Route::get('/partai/garuda', function () {
+    $profile_garuda = DB::table('profile_partai')
+                    ->where('nama_partai', 'Partai Garda Perubahan Indonesia (GARUDA)')
+                    ->first();
+    return view('partai.garuda', ['image' => 'image_11.png', 'profile_garuda' => $profile_garuda]);
+})->name('partai.garuda');
+
+Route::get('/partai/gerindra', function () {
+    $profile_gerindra = DB::table('profile_partai')
+                    ->where('nama_partai', 'Partai Gerakan Indonesia Raya (GERINDRA)')
+                    ->first();
+    return view('partai.gerindra', ['image' => 'image_2.png', 'profile_gerindra' => $profile_gerindra]);
+})->name('partai.gerindra');
+
+Route::get('/partai/golkar', function () {
+    $profile_golkar = DB::table('profile_partai')
+                    ->where('nama_partai', 'Partai Golongan Karya (Golkar)')
+                    ->first();
+    return view('partai.golkar', ['image' => 'image_4.png', 'profile_golkar' => $profile_golkar]);
+})->name('partai.golkar');
+
+Route::get('/partai/perindo', function () {
+    $profile_perindo = DB::table('profile_partai')
+                    ->where('nama_partai', 'Partai Persatuan Indonesia (PERINDO)')
+                    ->first();
+    return view('partai.perindo', ['image' => 'image_16.png', 'profile_perindo' => $profile_perindo]);
+})->name('partai.perindo');
+
+Route::get('/partai/pks', function () {
+    $profile_pks = DB::table('profile_partai')
+                    ->where('nama_partai', 'Partai Keadilan Sejahtera (PKS)')
+                    ->first();
+    return view('partai.pks', ['image' => 'image_8.png', 'profile_pks' => $profile_pks]);
+})->name('partai.pks');
+
+Route::get('/partai/pkb', function () {
+    $profile_pkb = DB::table('profile_partai')
+                    ->where('nama_partai', 'Partai Kebangkitan Bangsa (PKB)')
+                    ->first();
+    return view('partai.pkb', ['image' => 'image_1.png', 'profile_pkb' => $profile_pkb]);
+})->name('partai.pkb');
+
+Route::get('/partai/pkn', function () {
+    $profile_pkn = DB::table('profile_partai')
+                    ->where('nama_partai', 'Partai Kebangkitan Nusantara (PKN)')
+                    ->first();
+    return view('partai.pkn', ['image' => 'image_9.png', 'profile_pkn' => $profile_pkn]);
+})->name('partai.pkn');
+
+Route::get('/partai/ppp', function () {
+    $profile_ppp = DB::table('profile_partai')
+                    ->where('nama_partai', 'Partai Persatuan Pembangunan (PPP)')
+                    ->first();
+    return view('partai.ppp', ['image' => 'image_17.png', 'profile_ppp' => $profile_ppp]);
+})->name('partai.ppp');
+
+Route::get('/partai/gelora', function () {
+    $profile_gelora = DB::table('profile_partai')
+                    ->where('nama_partai', 'Partai Gelombang Rakyat Indonesia (Gelora)')
+                    ->first();
+    return view('partai.gelora', ['image' => 'image_7.png', 'profile_gelora' => $profile_gelora]);
+})->name('partai.gelora');
+
+Route::get('/partai/pbb', function () {
+    $profile_pbb = DB::table('profile_partai')
+                    ->where('nama_partai', 'Partai Bulan Bintang (PBB)')
+                    ->first();
+    return view('partai.pbb', ['image' => 'image_13.png', 'profile_pbb' => $profile_pbb]);
+})->name('partai.pbb');
+
+Route::get('/partai/hanura', function () {
+    $profile_hanura = DB::table('profile_partai')
+                    ->where('nama_partai', 'Partai Hati Nurani Rakyat (Hanura)')
+                    ->first();
+    return view('partai.hanura', ['image' => 'image_10.png', 'profile_hanura' => $profile_hanura]);
+})->name('partai.hanura');

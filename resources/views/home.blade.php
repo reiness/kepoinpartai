@@ -68,6 +68,7 @@
                     @endif
 
                     {{ __('You are logged in!') }}
+                    <br>
 
                     <style>
                         .logout-link {
@@ -82,7 +83,7 @@
                       </style>
 
                     <a class="logout-link" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                        {{ __('Log out') }}
+                        {{ __('Log out?') }}
                     </a>
 
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">

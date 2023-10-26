@@ -92,7 +92,7 @@
             <div class="col-md-3 mb-4">
                 <div class="custom-card">
                     <div class="custom-card-img-container">
-                        <img src="{{ asset('images/image_2.png') }}" alt="Partai 2" class="card-img-top custom-card-img custom-card-img-rounded">
+                        <img src="{{ asset('images/image_6.png') }}" alt="Partai 2" class="card-img-top custom-card-img custom-card-img-rounded">
                     </div>
                     <div class="card-body custom-card-content">
                         <h5 class="card-title">Partai 2</h5>
@@ -105,7 +105,7 @@
             <div class="col-md-3 mb-4">
                 <div class="custom-card">
                     <div class="custom-card-img-container">
-                        <img src="{{ asset('images/image_3.png') }}" alt="Partai 2" class="card-img-top custom-card-img custom-card-img-rounded">
+                        <img src="{{ asset('images/image_7.png') }}" alt="Partai 2" class="card-img-top custom-card-img custom-card-img-rounded">
                     </div>
                     <div class="card-body custom-card-content">
                         <h5 class="card-title">Partai 3</h5>
@@ -118,7 +118,7 @@
             <div class="col-md-3 mb-4">
                 <div class="custom-card">
                     <div class="custom-card-img-container">
-                        <img src="{{ asset('images/image_4.png') }}" alt="Partai 2" class="card-img-top custom-card-img custom-card-img-rounded">
+                        <img src="{{ asset('images/image_8.png') }}" alt="Partai 2" class="card-img-top custom-card-img custom-card-img-rounded">
                     </div>
                     <div class="card-body custom-card-content">
                         <h5 class="card-title">Partai 4</h5>
@@ -134,7 +134,7 @@
             <div class="col-md-3 mb-4">
                 <div class="custom-card">
                     <div class="custom-card-img-container">
-                        <img src="{{ asset('images/image_1.png') }}" alt="Partai 1" class="card-img-top custom-card-img custom-card-img-rounded">
+                        <img src="{{ asset('images/image_9.png') }}" alt="Partai 1" class="card-img-top custom-card-img custom-card-img-rounded">
                     </div>
                     <div class="card-body custom-card-content">
                         <h5 class="card-title">Partai 1</h5>
@@ -147,7 +147,7 @@
             <div class="col-md-3 mb-4">
                 <div class="custom-card">
                     <div class="custom-card-img-container">
-                        <img src="{{ asset('images/image_2.png') }}" alt="Partai 2" class="card-img-top custom-card-img custom-card-img-rounded">
+                        <img src="{{ asset('images/image_10.png') }}" alt="Partai 2" class="card-img-top custom-card-img custom-card-img-rounded">
                     </div>
                     <div class="card-body custom-card-content">
                         <h5 class="card-title">Partai 2</h5>
@@ -160,7 +160,7 @@
             <div class="col-md-3 mb-4">
                 <div class="custom-card">
                     <div class="custom-card-img-container">
-                        <img src="{{ asset('images/image_3.png') }}" alt="Partai 2" class="card-img-top custom-card-img custom-card-img-rounded">
+                        <img src="{{ asset('images/image_11.png') }}" alt="Partai 2" class="card-img-top custom-card-img custom-card-img-rounded">
                     </div>
                     <div class="card-body custom-card-content">
                         <h5 class="card-title">Partai 3</h5>
@@ -173,7 +173,62 @@
             <div class="col-md-3 mb-4">
                 <div class="custom-card">
                     <div class="custom-card-img-container">
-                        <img src="{{ asset('images/image_4.png') }}" alt="Partai 2" class="card-img-top custom-card-img custom-card-img-rounded">
+                        <img src="{{ asset('images/image_12.png') }}" alt="Partai 12" class="card-img-top custom-card-img custom-card-img-rounded">
+                    </div>
+                    <div class="card-body custom-card-content">
+                        <h5 class="card-title">Partai 12</h5>
+                        <p class="card-text">Description for Partai 4</p>
+                        <a class="button-86" href="{{ route('partai.PAN') }}">Lihat Profil</a>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+
+        <div class="row">
+            <div class="col-md-3 mb-4">
+                <div class="custom-card">
+                    <div class="custom-card-img-container">
+                        <img src="{{ asset('images/image_13.png') }}" alt="Partai 1" class="card-img-top custom-card-img custom-card-img-rounded">
+                    </div>
+                    <div class="card-body custom-card-content">
+                        <h5 class="card-title">Partai 1</h5>
+                        <p class="card-text">Description for Partai 1</p>
+                        <a class="button-86" href="{{ route('partai.pdip') }}">Lihat Profil</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-3 mb-4">
+                <div class="custom-card">
+                    <div class="custom-card-img-container">
+                        <img src="{{ asset('images/image_14.png') }}" alt="Partai 2" class="card-img-top custom-card-img custom-card-img-rounded">
+                    </div>
+                    <div class="card-body custom-card-content">
+                        <h5 class="card-title">Partai 2</h5>
+                        <p class="card-text">Description for Partai 2</p>
+                        <a class="button-86" href="{{ route('partai.gerindra') }}">Lihat Profil</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-3 mb-4">
+                <div class="custom-card">
+                    <div class="custom-card-img-container">
+                        <img src="{{ asset('images/image_15.png') }}" alt="Partai 2" class="card-img-top custom-card-img custom-card-img-rounded">
+                    </div>
+                    <div class="card-body custom-card-content">
+                        <h5 class="card-title">Partai 3</h5>
+                        <p class="card-text">Description for Partai 3</p>
+                        <a class="button-86" href="{{ route('partai.pdip') }}">Lihat Profil</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-3 mb-4">
+                <div class="custom-card">
+                    <div class="custom-card-img-container">
+                        <img src="{{ asset('images/image_16.png') }}" alt="Partai 2" class="card-img-top custom-card-img custom-card-img-rounded">
                     </div>
                     <div class="card-body custom-card-content">
                         <h5 class="card-title">Partai 4</h5>
@@ -189,7 +244,7 @@
             <div class="col-md-3 mb-4">
                 <div class="custom-card">
                     <div class="custom-card-img-container">
-                        <img src="{{ asset('images/image_1.png') }}" alt="Partai 1" class="card-img-top custom-card-img custom-card-img-rounded">
+                        <img src="{{ asset('images/image_17.png') }}" alt="Partai 1" class="card-img-top custom-card-img custom-card-img-rounded">
                     </div>
                     <div class="card-body custom-card-content">
                         <h5 class="card-title">Partai 1</h5>
@@ -202,62 +257,7 @@
             <div class="col-md-3 mb-4">
                 <div class="custom-card">
                     <div class="custom-card-img-container">
-                        <img src="{{ asset('images/image_2.png') }}" alt="Partai 2" class="card-img-top custom-card-img custom-card-img-rounded">
-                    </div>
-                    <div class="card-body custom-card-content">
-                        <h5 class="card-title">Partai 2</h5>
-                        <p class="card-text">Description for Partai 2</p>
-                        <a class="button-86" href="{{ route('partai.gerindra') }}">Lihat Profil</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-3 mb-4">
-                <div class="custom-card">
-                    <div class="custom-card-img-container">
-                        <img src="{{ asset('images/image_3.png') }}" alt="Partai 2" class="card-img-top custom-card-img custom-card-img-rounded">
-                    </div>
-                    <div class="card-body custom-card-content">
-                        <h5 class="card-title">Partai 3</h5>
-                        <p class="card-text">Description for Partai 3</p>
-                        <a class="button-86" href="{{ route('partai.pdip') }}">Lihat Profil</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-3 mb-4">
-                <div class="custom-card">
-                    <div class="custom-card-img-container">
-                        <img src="{{ asset('images/image_4.png') }}" alt="Partai 2" class="card-img-top custom-card-img custom-card-img-rounded">
-                    </div>
-                    <div class="card-body custom-card-content">
-                        <h5 class="card-title">Partai 4</h5>
-                        <p class="card-text">Description for Partai 4</p>
-                        <a class="button-86" href="{{ route('partai.golkar') }}">Lihat Profil</a>
-                    </div>
-                </div>
-            </div>
-            
-        </div>
-
-        <div class="row">
-            <div class="col-md-3 mb-4">
-                <div class="custom-card">
-                    <div class="custom-card-img-container">
-                        <img src="{{ asset('images/image_1.png') }}" alt="Partai 1" class="card-img-top custom-card-img custom-card-img-rounded">
-                    </div>
-                    <div class="card-body custom-card-content">
-                        <h5 class="card-title">Partai 1</h5>
-                        <p class="card-text">Description for Partai 1</p>
-                        <a class="button-86" href="{{ route('partai.pdip') }}">Lihat Profil</a>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="col-md-3 mb-4">
-                <div class="custom-card">
-                    <div class="custom-card-img-container">
-                        <img src="{{ asset('images/image_2.png') }}" alt="Partai 2" class="card-img-top custom-card-img custom-card-img-rounded">
+                        <img src="{{ asset('images/image_18.png') }}" alt="Partai 2" class="card-img-top custom-card-img custom-card-img-rounded">
                     </div>
                     <div class="card-body custom-card-content">
                         <h5 class="card-title">Partai 2</h5>
