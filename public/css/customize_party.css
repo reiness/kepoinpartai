@@ -47,3 +47,8 @@ p {
 .quote span {
     font-weight: bold;
 }
+div {
+    margin: -10px; /* Adjust the value according to your preference */
+    padding: 10px;
+    max-width: 1200px;
+  }
