@@ -19,16 +19,18 @@
         }
         .left, .right {
             display: inline-block;
-            width: 45%;
-            text-align: left;
+            width: 100%;
+            text-align: center;
         }
     </style>
 </head>
 <body>
     <div class="container d-flex flex-column justify-content-center align-items-center" style="height: 100vh;">
-        <img src="{{ asset('images/image_4.png') }}" alt="Golkar" style="max-width: 40%; max-height: 40%;">
+        <img src="{{ asset('images/image_4.png') }}" alt="Golkar" style="max-width: 20%; max-height: 20%;">
         <h1>Golkar</h1>
         <h4>Ketua umum: {{ $profile_golkar -> ketua_umum }}</h4>
+        <p>Ideologi: Konservatisme, sekularisme, koservatisme nasional, liberalisme ekonomi, nasionalisme Indonesia, Pancasila</p>
+        <br></br>
         <br></br>
         <div class="left">
             <h3>Kasus Korupsi</h3>
