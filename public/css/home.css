@@ -1,0 +1,118 @@
+/* home.css */
+/* home.css */
+.button-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    text-align: center;
+}
+
+.button-86 {
+    all: unset;
+    max-width: 200px; /* Set the maximum width */
+    width: 100%;
+    height: 50%;
+    font-size: 15px;
+    background: transparent;
+    border: none;
+    position: relative;
+    color: white;
+    cursor: pointer;
+    z-index: 1;
+    padding: 10px 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    white-space: nowrap;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    margin: 10px 0; /* Add margin after each button */
+}
+
+.button-86::after,
+.button-86::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    z-index: -99999;
+    transition: all .4s;
+}
+
+.button-86::before {
+    transform: translate(0%, 0%);
+    width: 100%;
+    height: 100%;
+    background: #5038bc;
+    border-radius: 30px;
+}
+
+.button-86::after {
+    transform: translate(10px, 10px);
+    width: 50px;
+    height: 50px;
+    background: #ffffff15;
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border-radius: 50px;
+}
+
+.button-86:hover::before {
+    transform: translate(5%, 20%);
+    width: 110%;
+    height: 110%;
+}
+
+.button-86:hover::after {
+    border-radius: 40px;
+    transform: translate(0, 0);
+    width: 100%;
+    height: 100%;
+}
+
+.button-86:active::after {
+    transition: 0s;
+    transform: translate(0, 5%);
+}
+
+.custom-button {
+    background-color: #5038bc;
+    border: none;
+    color: #fff;
+    padding: 10px 20px;
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 10px;
+}
+
+.custom-button:hover {
+    background-color: #422c9d;
+    transition: background-color 0.2s;
+}
+
+.button-86 a {
+    color: white;
+    text-decoration: none;
+}
+
+.button-86 a:hover {
+    text-decoration: underline;
+}
+
+.button-86 a:focus {
+    outline: none;
+}
+
+/* Additional styles for text size */
+.large-text {
+    font-size: 40px;
+}
+
+
+/* Additional styles for text size */
+.large-text {
+    font-size: 40px;
+}

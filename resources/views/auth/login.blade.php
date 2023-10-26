@@ -1,11 +1,58 @@
 @extends('layouts.app')
 
 @section('content')
+    <style>
+        body {
+            font-family: poppins, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .card {
+            width: 100%;
+            max-width: 400px; /* Adjust the maximum width as needed */
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Soft shadow */
+            border-radius: 8px;
+        }
+
+        .card-header, .card-footer {
+            background: none; /* Remove background color */
+            border: none; /* Remove border */
+        }
+        
+        .card-footer {
+            text-align: left; /* Left-align the card footer */
+        }
+
+        .logo-container {
+            display: flex;
+            justify-content: center;
+        }
+
+        .logo {
+            width: 200px;
+            height: 100%;
+        }
+
+        .login-button {
+            background-color: #5038bc; /* Purple color for the login button */
+            color: #fff; /* White text color */
+        }
+    </style>
+
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">{{ __('Login') }}</div>
+                    <div class="card-header">
+                        <div class="logo-container">
+                            <img class="logo" src="{{ asset('images/logo1.png') }}" alt="Your Logo" />
+                        </div>
+                    </div>
 
                     <div class="card-body">
                         <form method="POST" action="{{ route('login') }}">
@@ -41,15 +88,15 @@
                             </div>
 
                             <div class="form-group mb-0">
-                                <button type="submit" class="btn btn-primary">
+                                <button type="submit" class="btn login-button">
                                     {{ __('Login') }}
                                 </button>
                             </div>
                         </form>
                     </div>
                     <div class="card-footer">
-                        <p class="text-center">{{ __("Belum punya akun?") }}</p>
-                        <a class="btn btn-link" href="{{ route('register') }}">
+                        <p style="text-align: left">{{ __("Belum punya akun?") }}</p>
+                        <a style="text-align: left" class="btn btn-link" href="{{ route('register') }}">
                             {{ __('Register') }}
                         </a>
                     </div>
