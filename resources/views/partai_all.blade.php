@@ -68,7 +68,7 @@
         <div class="col-md-2">
             <div class="partai-item">
                 <img src="{{ asset('images/image_11.png') }}" alt="Partai 11" style="max-width: 100%; height: auto;">
-                <a href="{{ route('partai.pdip') }}" class="btn btn-primary mt-3">Lihat Profil</a>
+                <a href="{{ route('partai.garuda') }}" class="btn btn-primary mt-3">Lihat Profil</a>
             </div>
         </div>
         <div class="col-md-2">
