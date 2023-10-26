@@ -40,6 +40,8 @@
             <h3>Suap & Gratifikasi</h3>
             <p>Total Kasus: {{ $profile_pks -> jumlah_kasus_suap_gratifikasi }}</p>
             <p>Total Nominal: {{ $profile_pks -> nominal_suap_gratifikasi }} Miliar</p>
+            <h3>Fakta menarik:</h3> 
+            <p>Mengusung Anies Baswedan sebagai capres bersama dengan PKB dan Nasdem</p>
         </div>
     </div>
 </body>

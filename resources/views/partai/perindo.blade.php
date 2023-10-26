@@ -40,6 +40,8 @@
             <h3>Suap & Gratifikasi</h3>
             <p>Total Kasus: {{ $profile_perindo -> jumlah_kasus_suap_gratifikasi }}</p>
             <p>Total Nominal: {{ $profile_perindo -> nominal_suap_gratifikasi }} Miliar</p>
+            <h3>Fakta menarik:</h3> 
+            <p>Aldi Taher dari perindo, seorang aktor, mencalonkan diri sebagai anggota DPR 2024-2029</p>
         </div>
     </div>
 </body>

@@ -40,6 +40,8 @@
             <h3>Suap & Gratifikasi</h3>
             <p>Total Kasus: {{ $profile_pdip -> jumlah_kasus_suap_gratifikasi }}</p>
             <p>Total Nominal: {{ $profile_pdip -> nominal_suap_gratifikasi }} Miliar</p>
+            <h3>Fakta menarik:</h3> 
+            <p>Pernah terpecah menjadi dua kubu pada tahun 1996 karena Megawati terpilih menjadi ketua dan ada kelompok yang tidak setuju</p>
         </div>
     </div>
 </body>

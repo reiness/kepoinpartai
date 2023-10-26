@@ -40,6 +40,8 @@
             <h3>Suap & Gratifikasi</h3>
             <p>Total Kasus: {{ $profile_garuda -> jumlah_kasus_suap_gratifikasi }}</p>
             <p>Total Nominal: {{ $profile_garuda -> nominal_suap_gratifikasi }} Miliar</p>
+            <h3>Fakta menarik:</h3> 
+            <p>Merupakan partai dengan pengurus-pengurus yang masih lumayan muda</p>
         </div>
     </div>
 </body>
