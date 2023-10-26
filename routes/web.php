@@ -248,3 +248,10 @@ Route::get('/partai/hanura', function () {
                     ->first();
     return view('partai.hanura', ['image' => 'image_10.png', 'profile_hanura' => $profile_hanura]);
 })->name('partai.hanura');
+
+Route::get('/partai/pu', function () {
+    $profile_hanura = DB::table('profile_partai')
+                    ->where('nama_partai', 'Partai Ummat (PU)')
+                    ->first();
+    return view('partai.pu', ['image' => 'image_18.png', 'profile_pu' => $profile_pu]);
+})->name('partai.pu');
