@@ -1,0 +1,14 @@
+        /* Custom CSS for the Bootstrap Navbar */
+        .navbar {
+            background-color: #5038bc; /* Purple background color */
+        }
+
+        .navbar-brand {
+            font-size: 24px; /* Increase font size */
+            color: #fff; /* White text color */
+        }
+
+        .navbar-nav .nav-item {
+            font-size: 18px; /* Increase font size for navigation links */
+            margin-right: 20px; /* Add margin to create space between nav-items */
+        }

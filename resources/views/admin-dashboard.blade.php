@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container">
+    <div class="container" style= "padding-top: 120px;">
         <h2>Admin Dashboard</h2>
 
         {{-- @if (session('success'))
