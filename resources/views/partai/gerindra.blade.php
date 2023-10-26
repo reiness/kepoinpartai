@@ -19,16 +19,17 @@
         }
         .left, .right {
             display: inline-block;
-            width: 45%;
-            text-align: left;
+            width: 100%;
+            text-align: center;
         }
     </style>
 </head>
 <body>
     <div class="container d-flex flex-column justify-content-center align-items-center" style="height: 100vh;">
-        <img src="{{ asset('images/image_2.png') }}" alt="Gerindra" style="max-width: 40%; max-height: 40%;">
+        <img src="{{ asset('images/image_2.png') }}" alt="Gerindra" style="max-width: 20%; max-height: 20%;">
         <h1>Gerindra</h1>
         <h4>Ketua umum: {{ $profile_gerindra -> ketua_umum }}</h4>
+        <p>Ideologi: Pancasila, anti-komunisme, nasionalisme Indonesia, konservatisme nasional, populisme sayap-kanan, illiberalisme</p>
         <br></br>
         <div class="left">
             <h3>Kasus Korupsi</h3>
