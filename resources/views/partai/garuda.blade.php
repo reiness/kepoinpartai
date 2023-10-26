@@ -19,16 +19,17 @@
         }
         .left, .right {
             display: inline-block;
-            width: 45%;
-            text-align: left;
+            width: 100%;
+            text-align: center;
         }
     </style>
 </head>
 <body>
     <div class="container d-flex flex-column justify-content-center align-items-center" style="height: 100vh;">
-        <img src="{{ asset('images/image_11.png') }}" alt="Garuda" style="max-width: 50%; max-height: 50%;">
+        <img src="{{ asset('images/image_11.png') }}" alt="Garuda" style="max-width: 30%; max-height: 30%;">
         <h1>garuda</h1>
         <h4>Ketua umum: {{ $profile_garuda -> ketua_umum }}</h4>
+        <p>Ideologi: Pancasila</p>
         <br></br>
         <div class="left">
             <h3>Kasus Korupsi</h3>
