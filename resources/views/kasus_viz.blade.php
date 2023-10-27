@@ -133,13 +133,14 @@
                             label: 'Suap & Gratifikasi dalam Miliar Rupiah',
                             data: dataSuapGratifikasi, // y-axis: nominal_suap_gratifikasi from ProfilePartai model
                             backgroundColor: [
-                                'rgba(80, 56, 188, 0.2)',
-                                'rgba(80, 56, 188, 0.4)',
-                                'rgba(80, 56, 188, 0.6)',
-                                'rgba(80, 56, 188, 0.8)',
-                                'rgba(80, 56, 188, 1)',
+                                'rgba(0, 0, 0, 0.2)',
+                                'rgba(0, 0, 0, 0.4)',
+                                'rgba(0, 0, 0, 0.6)',
+                                'rgba(0, 0, 0, 0.8)',
+                                'rgba(0, 0, 0, 1)',
+
                             ],
-                            borderColor: 'rgba(80, 56, 188, 1)',
+                            borderColor: 'rgba(0, 0, 0, 1)',
                             borderWidth: 1,
                             borderRadius: 5 , // Add this property for rounded bars
                         }]
@@ -174,13 +175,15 @@
                             label: 'Korupsi dalam Miliar Rupiah',
                             data: dataKasusKorupsi, 
                             backgroundColor: [
-                                'rgba(80, 56, 188, 0.2)',
-                                'rgba(80, 56, 188, 0.4)',
-                                'rgba(80, 56, 188, 0.6)',
-                                'rgba(80, 56, 188, 0.8)',
-                                'rgba(80, 56, 188, 1)',
+                                'rgba(128, 0, 0, 0.2)',
+                                'rgba(128, 0, 0, 0.4)',
+                                'rgba(128, 0, 0, 0.6)',
+                                'rgba(128, 0, 0, 0.8)',
+                                'rgba(128, 0, 0, 1)',
+
+
                             ],
-                            borderColor: 'rgba(80, 56, 188, 1)',
+                            borderColor: 'rgba(128, 0, 0, 1)',
                             borderWidth: 1,
                             borderRadius: 5, // Add this property for rounded bars
                         }]
