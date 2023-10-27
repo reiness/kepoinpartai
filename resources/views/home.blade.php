@@ -103,7 +103,7 @@
                       </style>
 
                     <div class="button-86">
-                        <a href="{{ route('kasus_viz') }}">Kasus visualisasi</a>
+                        <a href="{{ route('kasus_viz') }}">Visualisasi kasus</a>
                     </div>
                     <div class="button-86">
                         <a href="{{ route('vote') }}">Vote suara anda</a>
