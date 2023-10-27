@@ -78,7 +78,7 @@
     // Add an event listener to the button
     document.getElementById('voteButton').addEventListener('click', function() {
         // Redirect to the desired URL
-        window.location.href = "{{ route('vote') }}";
+        window.location.href = "{{ route('kasus_viz') }}";
     });
     </script>
     </div>
