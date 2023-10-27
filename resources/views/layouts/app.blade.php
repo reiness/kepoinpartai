@@ -44,12 +44,14 @@
             <li class="nav-item">
                 <a class="nav-link" href="{{ route('partai_all') }}" style="font-size: 18px; color: #5038bc;">Partai</a>
             </li>
+            @auth
             @if(auth()->user()->is_admin == 1)
             <!-- Display the "Admin" button for users with is_admin = 1 -->
             <li class="nav-item">
                 <a class="nav-link" href="{{ route('admin.dashboard') }}" style="font-size: 18px; color: #5038bc;">Admin</a>
             </li>
             @endif
+            @endauth
             @guest
                 <li class="nav-item">
                     <a class="nav-link" href="/login" style="font-size: 18px; color: #5038bc; margin-left: 20px;">Login</a>
