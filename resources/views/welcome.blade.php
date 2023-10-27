@@ -26,8 +26,8 @@
                 "A Place To Know <span class='special-word'>Partai Politik</span>",
                 "A Cool Way To <span class='special-word'>Compare</span>"
             ],
-            typeSpeed: 600,
-            backSpeed: 600,
+            typeSpeed: 100,
+            backSpeed: 100,
             loop: true
         });
     </script>

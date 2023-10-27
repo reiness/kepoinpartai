@@ -273,14 +273,14 @@
             </div>
             
             <div class="col-md-3 mb-4">
-                <div class="custom-card">
+                <div class="custom-card">   
                     <div class="custom-card-img-container">
                         <img src="{{ asset('images/image_18.png') }}" alt="Partai 2" class="card-img-top custom-card-img custom-card-img-rounded">
                     </div>
                     <div class="card-body custom-card-content">
                         {{-- <h5 class="card-title">Partai 2</h5> --}}
                         <p class="card-text">Partai Ummat</p>
-                        <a class="button-86" href="{{ route('partai.pdip') }}">Lihat Profil</a>
+                        <a class="button-86" href="{{ route('partai.pu') }}">Lihat Profil</a>
                     </div>
                 </div>
             </div>
