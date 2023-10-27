@@ -100,4 +100,15 @@ Database kami menjadi pondasi utama dalam mencapai tujuan kami. Database yang ca
 - Memberikan pemahaman yang lebih mendalam tentang partai-partai politik, menjawab pertanyaan masyarakat tentang latar belakang, ideologi, dan program partai.
 - Menghasilkan analisis yang akurat mengenai rekam jejak partai politik, membantu pemilih untuk membuat keputusan yang terinformasi.
 - Menyediakan akses mudah dan cepat ke data aktual, memungkinkan masyarakat untuk mengikuti perkembangan politik secara real-time.
-- Mendorong partis
+- Mendorong partisipasi aktif dengan memberikan sumber informasi yang andal, membantu pemilih untuk memilih pemimpin yang sesuai dengan nilai dan kepentingan mereka.
+
+
+‘Kepoin Partai’ percaya bahwa dengan memanfaatkan database yang kuat, kami dapat memberikan kontribusi positif dalam memperkuat proses demokratisasi di Indonesia dan membantu masyarakat dalam membuat keputusan yang lebih baik dalam pemilihan presiden yang akan datang.
+
+
+## Mission Objective 
+- Mengenali nama- nama partai yang terbentuk di Indonesia selama persiapan pemilihan presiden
+- Mengetahui sejarah terbentuknya partai- partai yang ada di Indonesia
+- Rekam jejak partai, seperti dari pemungutan suara, korupsi, suap dan gratifikasi, mantan narapidana, 
+- Countdown pemilihan presiden
+- Forecasting partai dengan voting tertinggi
