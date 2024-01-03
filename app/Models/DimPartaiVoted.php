@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class DimAdmin extends Model
+class DimPartaiVoted extends Model
 {
     protected $connection = 'secondary_mysql';
     protected $fillable = [

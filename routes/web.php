@@ -43,7 +43,9 @@ Route::get('/kasus_viz', function () {
 })->name('kasus_viz');
 
 
+// CHARTS
 Route::get('/getChartData', [ChartController::class, 'getChartData'])->name('chart.data');
+Route::get('/chart/location-data', [ChartController::class, 'getLocationData'])->name('chart.location-data');
 
 
 // Route::get('/vote', function () {

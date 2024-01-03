@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Feedback extends Model
+class FactVotes extends Model
 {
     protected $connection = 'secondary_mysql';
     protected $fillable = [
@@ -26,7 +26,7 @@ class Feedback extends Model
     {
         return $this->belongsTo(DimPartaiVoted::class, 'sk_vote', 'sk_vote');
     }
-    public function user_tempat()
+    public function dimTempat()
     {
         return $this->belongsTo(DimTempat::class, 'sk_tempat', 'sk_tempat');
     }
