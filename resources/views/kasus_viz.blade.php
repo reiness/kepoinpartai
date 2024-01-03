@@ -257,7 +257,15 @@
             });
 
         // Function for updating location visualization
+        // Function for updating location visualization
+        var iter = 0;
+        var locationChart;
+
+        // Use a flag to ensure the block of code runs only once
+        var codeExecuted = false;
+
         function updateLocationVisualization() {
+
             var selectedProvince = document.getElementById('provinceDropdown').value;
 
             axios.get('{{ route('chart.location-data') }}', {
@@ -277,50 +285,122 @@
                     });
 
                     var ctxLocation = document.getElementById('locationChart').getContext('2d');
-                    var locationChart = new Chart(ctxLocation, {
-                        type: 'bar',
-                        data: {
-                            labels: labels,
-                            datasets: [{
-                                label: 'User Count',
-                                data: count,
-                                backgroundColor: [
-                                    'rgba(0, 123, 255, 0.2)',
-                                    'rgba(0, 123, 255, 0.4)',
-                                    'rgba(0, 123, 255, 0.6)',
-                                    'rgba(0, 123, 255, 0.8)',
-                                    'rgba(0, 123, 255, 1)',
-                                ],
-                                borderColor: 'rgba(0, 123, 255, 1)',
-                                borderWidth: 1,
-                                borderRadius: 5,
-                            }]
-                        },
-                        options: {
-                            scales: {
-                                x: {
-                                    maxRotation: 0,
-                                    minRotation: 0,
-                                    autoSkip: true,
-                                    maxTicksLimit: 10,
-                                },
-                                y: {
-                                    beginAtZero: true,
-                                }
+
+                    // // Destroy existing chart if it exists
+                    // if (window.locationChart) {
+                    //     window.locationChart.destroy();
+                    // }
+
+                    // Create a new chart instance
+                    
+                    // var iter = 0;
+                    // var locationChart;
+
+                    // // Use a flag to ensure the block of code runs only once
+                    // var codeExecuted = false;
+
+                    if (!codeExecuted) {
+                        // Initialization code
+                        locationChart = new Chart(ctxLocation, {
+                            type: 'bar',
+                            data: {
+                                labels: labels,
+                                datasets: [{
+                                    label: 'User Count',
+                                    data: count,
+                                    backgroundColor: [
+                                        'rgba(0, 123, 255, 0.2)',
+                                        'rgba(0, 123, 255, 0.4)',
+                                        'rgba(0, 123, 255, 0.6)',
+                                        'rgba(0, 123, 255, 0.8)',
+                                        'rgba(0, 123, 255, 1)',
+                                    ],
+                                    borderColor: 'rgba(0, 123, 255, 1)',
+                                    borderWidth: 1,
+                                    borderRadius: 5,
+                                }]
                             },
-                            plugins: {
-                                legend: {
-                                    display: false,
+                            options: {
+                                scales: {
+                                    x: {
+                                        maxRotation: 0,
+                                        minRotation: 0,
+                                        autoSkip: true,
+                                        maxTicksLimit: 10,
+                                    },
+                                    y: {
+                                        beginAtZero: true,
+                                    }
+                                },
+                                plugins: {
+                                    legend: {
+                                        display: false,
+                                    }
                                 }
                             }
+                        });
+
+                        iter += 1;
+                        codeExecuted = true;
+                    } else {
+                        // Destroy the chart from the second time onward
+                        if (iter > 0 ) {
+                            locationChart.destroy();
                         }
-                    });
+
+                        // Reinitialize the chart
+                        locationChart = new Chart(ctxLocation, {
+                            type: 'bar',
+                            data: {
+                                labels: labels,
+                                datasets: [{
+                                    label: 'User Count',
+                                    data: count,
+                                    backgroundColor: [
+                                        'rgba(0, 123, 255, 0.2)',
+                                        'rgba(0, 123, 255, 0.4)',
+                                        'rgba(0, 123, 255, 0.6)',
+                                        'rgba(0, 123, 255, 0.8)',
+                                        'rgba(0, 123, 255, 1)',
+                                    ],
+                                    borderColor: 'rgba(0, 123, 255, 1)',
+                                    borderWidth: 1,
+                                    borderRadius: 5,
+                                }]
+                            },
+                            options: {
+                                scales: {
+                                    x: {
+                                        maxRotation: 0,
+                                        minRotation: 0,
+                                        autoSkip: true,
+                                        maxTicksLimit: 10,
+                                    },
+                                    y: {
+                                        beginAtZero: true,
+                                    }
+                                },
+                                plugins: {
+                                    legend: {
+                                        display: false,
+                                    }
+                                }
+                            }
+                        });
+
+                        iter += 1;
+                    }
+
                 })
                 .catch(function (error) {
                     console.log(error);
                 });
         }
 
+        // Call the function once the document is loaded
+        document.addEventListener("DOMContentLoaded", function () {
+            updateLocationVisualization();
+        });
     </script>
     @endsection
 

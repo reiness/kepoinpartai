@@ -15,7 +15,7 @@ class DimTempat extends Model
     ];
 
     // Define the one-to-many relationship with FactVotes table
-    public function user_tempat()
+    public function dimTempat()
     {
         return $this->hasMany(FactVotes::class, 'sk_tempat', 'sk_tempat');
     }
