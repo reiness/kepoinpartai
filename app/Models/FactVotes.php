@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Feedback extends Model
 {
-    protected $connection = 'secondary_mysql'
+    protected $connection = 'secondary_mysql';
     protected $fillable = [
         'sk_tempat',
         'sk_vote',

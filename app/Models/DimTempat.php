@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class DimTempat extends Model
 {
-    protected $connection = 'secondary_mysql'
+    protected $connection = 'secondary_mysql';
     protected $fillable = [
         'sk_tempat',
         'province',

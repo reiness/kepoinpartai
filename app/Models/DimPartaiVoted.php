@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class DimAdmin extends Model
 {
-    protected $connection = 'secondary_mysql'
+    protected $connection = 'secondary_mysql';
     protected $fillable = [
         'sk_vote',
         'nama_partai',
