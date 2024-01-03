@@ -57,6 +57,13 @@
         </div>
     </section>
 
+    <section>
+        <div class="container-card">
+            <h1>Visualisasi Waktu</h1>
+            <canvas id="voterBerdasarkanWaktu" width="1600" height="900"></canvas>
+        </div>
+    </section>
+
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>

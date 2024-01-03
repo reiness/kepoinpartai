@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Feedback extends Model
+class FactVotes extends Model
 {
     protected $connection = 'secondary_mysql';
     protected $fillable = [
