@@ -27,23 +27,37 @@ class ChartController extends Controller
         $item->nominal_suap_gratifikasi = $partai->nominal_suap_gratifikasi;
         $item->nominal_kasus_korupsi = $partai->nominal_kasus_korupsi;
         return $item;
+        
     });
-    $chartData1 = FactVotes::select('sk_waktu')
-        ->selectRaw('count(*) as count')
-        ->groupBy('sk_waktu')
-        ->get();
-
-// Join the ProfilePartai model to get nominal_suap_gratifikasi
-    $chartData1 = $chartData1->map(function ($item1) {
-        $dim_waktu = DimWaktu::where('sk_waktu', $item1->sk_waktu)->first();
-        $item1->hari = $DimWaktu->hari;
-        $item1->kuartal = $DimWaktu->kuartal;
-        $item1->bulan = $DimWaktu->nama_bulan;
-        $item1->tahun = $DimWaktu->tahun;
-        $item1->tanggal = $DimWaktu->tanggal;
-        return $item1;
-    });
-
-    return response()->json(['chartData' => $chartData, 'chartData1' => $chartData1]);
+    return response()->json($chartData);
 }
+    public function getTimeData(Request $request)
+{
+    $selectedMonth = $request->input('nama_bulan');
+
+    $timeData = FactVotes::select('sk_waktu')
+    ->selectRaw('count(*) as count')
+    ->when($selectedMonth, function($query_month) use ($selectedMonth){
+        $query_month->whereHas('dimWaktu', function($subquery) use ($selectedMonth){
+           $subquery->where('nama_bulan', $selectedMonth);
+        });
+    })
+    ->groupBy('sk_waktu')
+    ->get();
+
+    $timeData = $timeData->map(function($item1){
+        $time = DimWaktu::where('sk_waktu', $item1->sk_waktu)->first();
+    return [
+                'sk_waktu' => $item1->sk_waktu,
+                'count' => $item1->count,
+                'year' => optional($time)->tahun,
+                'quartal' => optional($time)->kuartal,
+                'month' => optional($time)->nama_bulan,
+                'day' => optional($time)->hari,
+                'date' => optional($time)->tanggal
+            ];
+        });
+    
+        return response()->json($timeData);
+    }
 }

@@ -18,7 +18,7 @@ class DimWaktu extends Model
     ];
 
     // Define the one-to-one relationship with UserVote table
-    public function user_waktu()
+    public function dimWaktu()
     {
         return $this->hasMany(FactVotes::class, 'sk_waktu', 'sk_waktu');
     }

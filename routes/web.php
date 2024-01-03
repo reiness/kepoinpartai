@@ -44,7 +44,7 @@ Route::get('/kasus_viz', function () {
 
 
 Route::get('/getChartData', [ChartController::class, 'getChartData'])->name('chart.data');
-
+Route::get('/chart/timedata', [ChartController::class, 'getTimeData'])->name('chart.timedata');
 
 // Route::get('/vote', function () {
 //     return view('vote');

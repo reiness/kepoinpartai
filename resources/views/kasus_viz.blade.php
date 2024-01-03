@@ -60,8 +60,15 @@
     <section>
         <div class="container-card">
             <h1>Visualisasi Waktu</h1>
-            <canvas id="voterBerdasarkanWaktu" width="1600" height="900"></canvas>
+            <label for="monthDropdown">Select Month:</label>
+            <select id="monthDropdown" onchange="updateTimeVisualization()">
+                <option value="">All Months</option>
+                <!-- Populate options dynamically based on data from the server -->
+            </select>
+            <canvas id="timeChart" width="1600" height="900"></canvas>
         </div>
+    </section>
+
     </section>
 
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
@@ -214,10 +221,163 @@
                         }
                     }
                 });
+
+            //Time Visualization
+            //Getting month data for the dropdown
+            axios.get('{{ route('chart.timedata') }}')
+                    .then(function (response) {
+                        var months = response.data.map(function (item) {
+                            return item.month;
+                        });
+
+                        //Duplicate removal
+                        months = [...new Set(months)];
+                        console.log(months);
+
+                        // Populate dropdown options
+                        var dropdown = document.getElementById('monthDropdown');
+                        dropdown.innerHTML = ''; // Clear existing options
+                        var defaultOption = document.createElement('option');
+                        defaultOption.value = '';
+                        defaultOption.text = 'All Months';
+                        dropdown.add(defaultOption);
+                        months.forEach(function (month) {
+                            var option = document.createElement('option');
+                            option.value = month;
+                            option.text = month;
+                            dropdown.add(option);
+                        });
             })
             .catch(function (error) {
                 console.log(error);
             });
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
+
+
+        //To Check
+        var iter1 = 0;
+        var timeChart;
+
+        // Using a flag to ensure the block of code runs only once
+        var codeExecuted1 = false;
+    //Time update
+    function updateTimeVisualization() {
+            var selectedMonth = document.getElementById('monthDropdown').value;
+
+            axios.get('{{ route('chart.timedata') }}', {
+                    params: {
+                        month: selectedMonth
+                    }
+                })
+                .then(function (response) {
+                    var timeData = response.data;
+
+                    var labels = timeData.map(function (item) {
+                        return item.hari;
+                    });
+
+                    var count = timeData.map(function (item) {
+                        return item.count;
+                    });
+
+                    var ctxTime = document.getElementById('timeChart').getContext('2d');
+                    if (!codeExecuted1) {
+                    
+                        timeChart = new Chart(ctxTime, {
+                        type: 'bar',
+                        data: {
+                            labels: labels,
+                            datasets: [{
+                                label: 'User Count',
+                                data: count,
+                                backgroundColor: [
+                                    'rgba(0, 123, 255, 0.2)',
+                                    'rgba(0, 123, 255, 0.4)',
+                                    'rgba(0, 123, 255, 0.6)',
+                                    'rgba(0, 123, 255, 0.8)',
+                                    'rgba(0, 123, 255, 1)',
+                                ],
+                                borderColor: 'rgba(0, 123, 255, 1)',
+                                borderWidth: 1,
+                                borderRadius: 5,
+                            }]
+                        },
+                        options: {
+                            scales: {
+                                x: {
+                                    maxRotation: 0,
+                                    minRotation: 0,
+                                    autoSkip: true,
+                                    maxTicksLimit: 10,
+                                },
+                                y: {
+                                    beginAtZero: true,
+                                }
+                            },
+                            plugins: {
+                                legend: {
+                                    display: false,
+                                }
+                            }
+                        }
+                    });
+                    iter1 +=1;
+                    codeExecuted1 = true
+                }else{
+                    if (iter1 > 0 ) {
+                            timeChart.destroy();
+                    }
+                    timeChart = new Chart(ctxTime, {
+                        type: 'bar',
+                        data: {
+                            labels: labels,
+                            datasets: [{
+                                label: 'User Count',
+                                data: count,
+                                backgroundColor: [
+                                    'rgba(0, 123, 255, 0.2)',
+                                    'rgba(0, 123, 255, 0.4)',
+                                    'rgba(0, 123, 255, 0.6)',
+                                    'rgba(0, 123, 255, 0.8)',
+                                    'rgba(0, 123, 255, 1)',
+                                ],
+                                borderColor: 'rgba(0, 123, 255, 1)',
+                                borderWidth: 1,
+                                borderRadius: 5,
+                            }]
+                        },
+                        options: {
+                            scales: {
+                                x: {
+                                    maxRotation: 0,
+                                    minRotation: 0,
+                                    autoSkip: true,
+                                    maxTicksLimit: 10,
+                                },
+                                y: {
+                                    beginAtZero: true,
+                                }
+                            },
+                            plugins: {
+                                legend: {
+                                    display: false,
+                                }
+                            }
+                        }
+                    });
+                    iter1 +=1;
+                    }
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
+        }
+        document.addEventListener("DOMContentLoaded", function () {
+            updateTimeVisualization();
+        });
     </script>
     @endsection
 

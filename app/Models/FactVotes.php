@@ -30,7 +30,7 @@ class FactVotes extends Model
     {
         return $this->belongsTo(DimTempat::class, 'sk_tempat', 'sk_tempat');
     }
-    public function user_waktu()
+    public function dimWaktu()
     {
         return $this->hasMany(DimWaktu::class, 'sk_waktu', 'sk_waktu');
     }
