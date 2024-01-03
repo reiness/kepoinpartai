@@ -42,6 +42,14 @@ return [
             'prefix' => '',
             'foreign_key_constraints' => env('DB_FOREIGN_KEYS', true),
         ],
+        'secondary_mysql' => [
+            'driver' => 'mysql',
+            'host' => env('SECONDARY_DB_HOST', '127.0.0.1'),
+            'port' => env('SECONDARY_DB_PORT', '3306'),
+            'database' => env('SECONDARY_DB_DATABASE', 'forge'),
+            'username' => env('SECONDARY_DB_USERNAME', 'forge'),
+            'password' => env('SECONDARY_DB_PASSWORD', ''),
+        ],
 
         'mysql' => [
             'driver' => 'mysql',
