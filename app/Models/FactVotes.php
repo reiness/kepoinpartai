@@ -22,4 +22,16 @@ class Feedback extends Model
     {
         return $this->belongsTo(DimAdmin::class, 'sk_admin', 'sk_admin');
     }
+    public function user_partai_vote()
+    {
+        return $this->belongsTo(DimPartaiVoted::class, 'sk_vote', 'sk_vote');
+    }
+    public function user_tempat()
+    {
+        return $this->belongsTo(DimTempat::class, 'sk_tempat', 'sk_tempat');
+    }
+    public function user_waktu()
+    {
+        return $this->hasMany(DimWaktu::class, 'sk_waktu', 'sk_waktu');
+    }
 }
