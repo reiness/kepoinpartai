@@ -36,29 +36,39 @@ class ChartController extends Controller
     public function getLocationData(Request $request)
     {
         $selectedProvince = $request->input('province');
-    
-        $locationData = FactVotes::select('sk_tempat')
+        
+        $locationData = FactVotes::select('id_tempat') // Change from 'sk_tempat' to 'id_tempat'
             ->selectRaw('count(*) as count')
-            ->when($selectedProvince, function ($query) use ($selectedProvince) {
+            ->when($selectedProvince && $selectedProvince !== 'All Provinces', function ($query) use ($selectedProvince) {
                 $query->whereHas('dimTempat', function ($subquery) use ($selectedProvince) {
                     $subquery->where('province', $selectedProvince);
                 });
             })
-            ->groupBy('sk_tempat')
+            ->when($selectedProvince === 'All Provinces', function ($query) {
+                $query->join('dim_tempats', 'dim_tempats.sk_tempat', '=', 'fact_votes.id_tempat') // Change from 'sk_tempat' to 'id_tempat'
+                    ->groupBy('dim_tempats.province');
+            })
+            ->groupBy('id_tempat') // Change from 'sk_tempat' to 'id_tempat'
             ->get();
-    
-        $locationData = $locationData->map(function ($item) {
-            $tempat = DimTempat::where('sk_tempat', $item->sk_tempat)->first();
-    
-            return [
-                'sk_tempat' => $item->sk_tempat,
-                'count' => $item->count,
-                'province' => optional($tempat)->province,
-                'city' => optional($tempat)->city,
-            ];
+        
+        $locationData = $locationData->map(function ($item) use ($selectedProvince) {
+            if ($selectedProvince === 'All Provinces') {
+                return [
+                    'province' => optional($item->dimTempat)->province,
+                    'count' => $item->count,
+                ];
+            } else {
+                $tempat = DimTempat::where('sk_tempat', $item->id_tempat)->first(); // Change from 'sk_tempat' to 'id_tempat'
+
+                return [
+                    'id_tempat' => $item->id_tempat, // Change from 'sk_tempat' to 'id_tempat'
+                    'count' => $item->count,
+                    'province' => optional($tempat)->province,
+                    'city' => optional($tempat)->city,
+                ];
+            }
         });
-    
+        
         return response()->json($locationData);
     }
-    
 }

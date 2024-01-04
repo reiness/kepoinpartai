@@ -62,7 +62,8 @@
             <h1>Location Visualization</h1>
             <label for="provinceDropdown">Select Province:</label>
             <select id="provinceDropdown" onchange="updateLocationVisualization()">
-                <option value="">All Provinces</option>
+                {{-- <option value="">All Provinces</option> --}}
+                <option value="All Provinces" selected>All Provinces</option>
                 <!-- Populate options dynamically based on data from the server -->
             </select>
             <canvas id="locationChart" width="1600" height="900"></canvas>
@@ -257,152 +258,115 @@
             });
 
         // Function for updating location visualization
-        // Function for updating location visualization
         var iter = 0;
-        var locationChart;
+var locationChart;
 
-        // Use a flag to ensure the block of code runs only once
-        var codeExecuted = false;
+// Use a flag to ensure the block of code runs only once
+var codeExecuted = false;
 
-        function updateLocationVisualization() {
+function updateLocationVisualization() {
+    var selectedProvince = document.getElementById('provinceDropdown').value;
 
-            var selectedProvince = document.getElementById('provinceDropdown').value;
+    axios.get('{{ route('chart.location-data') }}', {
+        params: {
+            province: selectedProvince
+        }
+    })
+    .then(function (response) {
+        var locationData = response.data;
 
-            axios.get('{{ route('chart.location-data') }}', {
-                    params: {
-                        province: selectedProvince
-                    }
-                })
-                .then(function (response) {
-                    var locationData = response.data;
+        var labels, count;
 
-                    var labels = locationData.map(function (item) {
-                        return item.city;
-                    });
+        if (selectedProvince === 'All Provinces') {
+            // If 'All Provinces' is selected, group counts by province
+            var groupedData = {};
+            locationData.forEach(function (item) {
+                var key = item.province || 'Unknown';
+                if (!groupedData[key]) {
+                    groupedData[key] = 0;
+                }
+                groupedData[key] += item.count;
+            });
 
-                    var count = locationData.map(function (item) {
-                        return item.count;
-                    });
-
-                    var ctxLocation = document.getElementById('locationChart').getContext('2d');
-
-                    // // Destroy existing chart if it exists
-                    // if (window.locationChart) {
-                    //     window.locationChart.destroy();
-                    // }
-
-                    // Create a new chart instance
-                    
-                    // var iter = 0;
-                    // var locationChart;
-
-                    // // Use a flag to ensure the block of code runs only once
-                    // var codeExecuted = false;
-
-                    if (!codeExecuted) {
-                        // Initialization code
-                        locationChart = new Chart(ctxLocation, {
-                            type: 'bar',
-                            data: {
-                                labels: labels,
-                                datasets: [{
-                                    label: 'User Count',
-                                    data: count,
-                                    backgroundColor: [
-                                        'rgba(0, 123, 255, 0.2)',
-                                        'rgba(0, 123, 255, 0.4)',
-                                        'rgba(0, 123, 255, 0.6)',
-                                        'rgba(0, 123, 255, 0.8)',
-                                        'rgba(0, 123, 255, 1)',
-                                    ],
-                                    borderColor: 'rgba(0, 123, 255, 1)',
-                                    borderWidth: 1,
-                                    borderRadius: 5,
-                                }]
-                            },
-                            options: {
-                                scales: {
-                                    x: {
-                                        maxRotation: 0,
-                                        minRotation: 0,
-                                        autoSkip: true,
-                                        maxTicksLimit: 10,
-                                    },
-                                    y: {
-                                        beginAtZero: true,
-                                    }
-                                },
-                                plugins: {
-                                    legend: {
-                                        display: false,
-                                    }
-                                }
-                            }
-                        });
-
-                        iter += 1;
-                        codeExecuted = true;
-                    } else {
-                        // Destroy the chart from the second time onward
-                        if (iter > 0 ) {
-                            locationChart.destroy();
-                        }
-
-                        // Reinitialize the chart
-                        locationChart = new Chart(ctxLocation, {
-                            type: 'bar',
-                            data: {
-                                labels: labels,
-                                datasets: [{
-                                    label: 'User Count',
-                                    data: count,
-                                    backgroundColor: [
-                                        'rgba(0, 123, 255, 0.2)',
-                                        'rgba(0, 123, 255, 0.4)',
-                                        'rgba(0, 123, 255, 0.6)',
-                                        'rgba(0, 123, 255, 0.8)',
-                                        'rgba(0, 123, 255, 1)',
-                                    ],
-                                    borderColor: 'rgba(0, 123, 255, 1)',
-                                    borderWidth: 1,
-                                    borderRadius: 5,
-                                }]
-                            },
-                            options: {
-                                scales: {
-                                    x: {
-                                        maxRotation: 0,
-                                        minRotation: 0,
-                                        autoSkip: true,
-                                        maxTicksLimit: 10,
-                                    },
-                                    y: {
-                                        beginAtZero: true,
-                                    }
-                                },
-                                plugins: {
-                                    legend: {
-                                        display: false,
-                                    }
-                                }
-                            }
-                        });
-
-                        iter += 1;
-                    }
-
-                })
-                .catch(function (error) {
-                    console.log(error);
-                });
+            labels = Object.keys(groupedData);
+            count = Object.values(groupedData);
+            console.log(selectedProvince);
+        } else {
+            // If a specific province is selected, use cities as labels
+            labels = locationData.map(function (item) {
+                return item.city;
+            });
+            count = locationData.map(function (item) {
+                return item.count;
+            });
         }
 
-        // Call the function once the document is loaded
-        document.addEventListener("DOMContentLoaded", function () {
-            updateLocationVisualization();
+        var ctxLocation = document.getElementById('locationChart').getContext('2d');
+
+        // Destroy existing chart from the second time onward
+        if (iter > 0 && codeExecuted) {
+            locationChart.destroy();
+        }
+
+        // Create a new chart instance
+        locationChart = new Chart(ctxLocation, {
+            type: 'bar',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'User Count',
+                    data: count,
+                    backgroundColor: [
+                        'rgba(0, 123, 255, 0.2)',
+                        'rgba(0, 123, 255, 0.4)',
+                        'rgba(0, 123, 255, 0.6)',
+                        'rgba(0, 123, 255, 0.8)',
+                        'rgba(0, 123, 255, 1)',
+                    ],
+                    borderColor: 'rgba(0, 123, 255, 1)',
+                    borderWidth: 1,
+                    borderRadius: 5,
+                }]
+            },
+            options: {
+                scales: {
+                    x: {
+                        maxRotation: 0,
+                        minRotation: 0,
+                        autoSkip: true,
+                        maxTicksLimit: 10,
+                    },
+                    y: {
+                        beginAtZero: true,
+                    }
+                },
+                plugins: {
+                    legend: {
+                        display: false,
+                    }
+                }
+            }
         });
-    </script>
-    @endsection
+
+        iter += 1;
+        codeExecuted = true;
+
+    })
+    .catch(function (error) {
+        console.log(error);
+    });
+}
+
+
+
+
+
+    // Call the function once the document is loaded
+    document.addEventListener("DOMContentLoaded", function () {
+        updateLocationVisualization();
+    });
+</script>
+@endsection
 
 </body>
 </html>
