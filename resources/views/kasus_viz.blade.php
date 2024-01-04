@@ -59,11 +59,13 @@
 
     <section>
         <div class="container-card">
-            <h1>Visualisasi Waktu</h1>
+            <h1>When did our voters vote?</h1>
             <label for="monthDropdown">Select Month:</label>
-            <select id="monthDropdown" onchange="updateTimeVisualization()">
-                <option value="">All Months</option>
-                <!-- Populate options dynamically based on data from the server -->
+            {{-- <select id="monthDropdown" onchange="updateTimeVisualization()"> --}}
+            <select id="monthDropdown">
+ 
+                <option value='All Months' selected>All Months</option>
+       
             </select>
             <canvas id="timeChart" width="1600" height="900"></canvas>
         </div>
@@ -226,31 +228,57 @@
             //Getting month data for the dropdown
             axios.get('{{ route('chart.timedata') }}')
                     .then(function (response) {
-                        var months = response.data.map(function (item) {
-                            return item.month;
+                        var months = response.data.map(function (item1) {
+                            return item1.nama_bulan; //Sketchy
                         });
 
                         //Duplicate removal
                         months = [...new Set(months)];
+
+                        // Getting the first month index and replacing it with 'All Months"
+                        var firstMonthIndex = months.findIndex(function(nama_bulan){ //Sketchy month.findIndex
+                            return nama_bulan !== 'All Months';
+                        });
+
+                        if(firstMonthIndex !== -1){
+                            months[firstMonthIndex] = 'All Months';
+                        }
+
                         console.log(months);
 
+                        // Add 'All Months' to the dropdown
+                
                         // Populate dropdown options
                         var dropdown = document.getElementById('monthDropdown');
                         dropdown.innerHTML = ''; // Clear existing options
-                        var defaultOption = document.createElement('option');
-                        defaultOption.value = '';
-                        defaultOption.text = 'All Months';
-                        dropdown.add(defaultOption);
-                        months.forEach(function (month) {
+
+                        
+                        months.forEach(function(nama_bulan){
                             var option = document.createElement('option');
-                            option.value = month;
-                            option.text = month;
+                            option.value = nama_bulan;
+                            option.text = nama_bulan;
                             dropdown.add(option);
+
+
+                            var monthNames = [
+                                'Januari', 'Februari', 'Maret', 'April',
+                                'Mei', 'Juni', 'Juli', 'Agustus',
+                                'September', 'Oktober', 'November', 'Desember'
+                            ];
+
+                            for (var i = 0; i < monthNames.length; i++) {
+                                var monthOption = document.createElement('option');
+                                monthOption.value = monthNames[i];
+                                monthOption.text = monthNames[i];
+                                dropdown.add(monthOption);
+                                }
+                        
+
                         });
-            })
-            .catch(function (error) {
-                console.log(error);
-            });
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    });
         })
         .catch(function (error) {
             console.log(error);
@@ -267,6 +295,7 @@
     function updateTimeVisualization() {
             var selectedMonth = document.getElementById('monthDropdown').value;
 
+
             axios.get('{{ route('chart.timedata') }}', {
                     params: {
                         month: selectedMonth
@@ -275,111 +304,127 @@
                 .then(function (response) {
                     var timeData = response.data;
 
-                    var labels = timeData.map(function (item) {
-                        return item.hari;
-                    });
+                    var labels,count;
 
-                    var count = timeData.map(function (item) {
-                        return item.count;
-                    });
+                    if(selectedMonth === 'All Months'|| selectedMonth === ' '){
+                        //We want to show groupby count by month if 'All Months' is selected
+                        console.log('All Months Selected!')
+                        var groupedDataTime = {};
+                        timeData.forEach(function(item1){
+                            var key = item1.nama_bulan || 'Unknown';
+
+                            if(!groupedDataTime[key]){
+                                groupedDataTime[key] = 0;
+                            }
+                            groupedDataTime[key] += item1.count;
+                        });
+
+                        labels = Object.keys(groupedDataTime);
+                        count = Object.values(groupedDataTime);
+                        console.log(selectedMonth);
+                        console.log('Time Viz Debug')
+                    }else if(selectedMonth !== 'All Months' && selectedMonth !== ' ' && selectedMonth == 'Oktober'){
+                        //We want to show days as labels if a specific month is selected
+                        //console.log('Time Viz Debug')
+                        labels = timeData.map(function(item1){
+                            return item1.hari;
+                        });
+                        count = timeData.map(function(item1){
+                            return item1.count;
+                        });
+                    }else if(selectedMonth !== 'All Months' && selectedMonth !== ' ' && selectedMonth !== 'Oktober'){
+                        //We want to show days as labels if a specific month is selected
+                        //console.log('Time Viz Debug')
+                        labels = timeData.map(function(item1){
+                            return 0;
+                        });
+                        count = timeData.map(function(item1){
+                            return 0;
+                        });
+                    }
 
                     var ctxTime = document.getElementById('timeChart').getContext('2d');
-                    if (!codeExecuted1) {
+         
+                    //We want to destroy existing chart so we can plot a new one for the second iteration and above
+                    if (iter1 > 0 && codeExecuted1) {
+                        timeChart.destroy();
+                    }
                     
-                        timeChart = new Chart(ctxTime, {
+                    //Creating a new chart instance
+                    timeChart = new Chart(ctxTime,{
                         type: 'bar',
-                        data: {
-                            labels: labels,
-                            datasets: [{
-                                label: 'User Count',
-                                data: count,
-                                backgroundColor: [
-                                    'rgba(0, 123, 255, 0.2)',
-                                    'rgba(0, 123, 255, 0.4)',
-                                    'rgba(0, 123, 255, 0.6)',
-                                    'rgba(0, 123, 255, 0.8)',
-                                    'rgba(0, 123, 255, 1)',
-                                ],
-                                borderColor: 'rgba(0, 123, 255, 1)',
-                                borderWidth: 1,
-                                borderRadius: 5,
-                            }]
-                        },
-                        options: {
-                            scales: {
-                                x: {
-                                    maxRotation: 0,
-                                    minRotation: 0,
-                                    autoSkip: true,
-                                    maxTicksLimit: 10,
-                                },
-                                y: {
-                                    beginAtZero: true,
-                                }
+                    data: {
+                        labels: labels,
+                        datasets: [{
+                            label: 'User Count',
+                            data: count,
+                            backgroundColor: [
+                                'rgba(0, 123, 255, 0.2)',
+                                'rgba(0, 123, 255, 0.4)',
+                                'rgba(0, 123, 255, 0.6)',
+                                'rgba(0, 123, 255, 0.8)',
+                                'rgba(0, 123, 255, 1)',
+                            ],
+                            borderColor: 'rgba(0, 123, 255, 1)',
+                            borderWidth: 1,
+                            borderRadius: 5,
+                        }]
+                    },
+                    options: {
+                        scales: {
+                            x: {
+                                maxRotation: 0,
+                                minRotation: 0,
+                                autoSkip: true,
+                                maxTicksLimit: 10,
                             },
-                            plugins: {
-                                legend: {
-                                    display: false,
-                                }
+                            y: {
+                                beginAtZero: true,
+                            }
+                        },
+                        plugins: {
+                            legend: {
+                                display: false,
                             }
                         }
-                    });
-                    iter1 +=1;
-                    codeExecuted1 = true
-                }else{
-                    if (iter1 > 0 ) {
-                            timeChart.destroy();
                     }
-                    timeChart = new Chart(ctxTime, {
-                        type: 'bar',
-                        data: {
-                            labels: labels,
-                            datasets: [{
-                                label: 'User Count',
-                                data: count,
-                                backgroundColor: [
-                                    'rgba(0, 123, 255, 0.2)',
-                                    'rgba(0, 123, 255, 0.4)',
-                                    'rgba(0, 123, 255, 0.6)',
-                                    'rgba(0, 123, 255, 0.8)',
-                                    'rgba(0, 123, 255, 1)',
-                                ],
-                                borderColor: 'rgba(0, 123, 255, 1)',
-                                borderWidth: 1,
-                                borderRadius: 5,
-                            }]
-                        },
-                        options: {
-                            scales: {
-                                x: {
-                                    maxRotation: 0,
-                                    minRotation: 0,
-                                    autoSkip: true,
-                                    maxTicksLimit: 10,
-                                },
-                                y: {
-                                    beginAtZero: true,
-                                }
-                            },
-                            plugins: {
-                                legend: {
-                                    display: false,
-                                }
-                            }
-                        }
-                    });
+                });
+                   
                     iter1 +=1;
-                    }
-                })
+                    codeExecuted1 = true;
+
+            })
                 .catch(function (error) {
                     console.log(error);
                 });
         }
+
+
+
+
+
         document.addEventListener("DOMContentLoaded", function () {
+            //Adding an even listener to the dropdown
+            var monthDropdown = document.getElementById('monthDropdown');
+
+            monthDropdown.addEventListener('change', function(){
+                //Calling the function when the dropdown changes
+                updateTimeVisualization();
+            });
+
+            //Calling the function once the document is loaded
             updateTimeVisualization();
+
+            //Checking if the selected value is empty and setting it to the default value if necessary
+            if(!monthDropdown.value){
+                monthDropdown.value = 'All Available Days';
+                //Might want to trigger the visualization update if needed
+                updateTimeVisualization();
+            }
         });
-    </script>
-    @endsection
+
+</script>
+@endsection
 
 </body>
 </html>

@@ -31,31 +31,44 @@ class ChartController extends Controller
     });
     return response()->json($chartData);
 }
+
+
     public function getTimeData(Request $request)
 {
-    $selectedDay = $request->input('hari');
+    $selectedMonth = $request->input('nama_bulan');
 
     $timeData = FactVotes::select('id_waktu')
     ->selectRaw('count(*) as count')
-    ->when($selectedDay, function($query_day) use ($selectedDay){
-        $query_day->whereHas('dimWaktu', function($subquery) use ($selectedDay){
-           $subquery->where('hari', $selectedDay);
+    ->when($selectedMonth && $selectedMonth !=='All Months', function($query_month) use ($selectedMonth){
+        $query_month->whereHas('dimWaktu', function($subquery) use ($selectedMonth){
+           $subquery->where('nama_bulan', $selectedMonth);
         });
+    })
+    ->when($selectedMonth === 'All Months', function($query_month){
+        $query_month->join('dim_waktus', 'dim_waktus.sk_waktu', '=','fact_votes.id_waktu') 
+        ->groupBy('dim_waktus.nama_bulan');
     })
     ->groupBy('id_waktu')
     ->get();
 
-    $timeData = $timeData->map(function($item1){
-        $time = DimWaktu::where('sk_waktu', $item1->id_waktu)->first();
-    return [
-                'sk_waktu' => $item1->sk_waktu,
+    $timeData = $timeData->map(function($item1) use($selectedMonth){
+        if($selectedMonth === 'All Months'){
+            return[
+                'nama_bulan' => optional($item1->dimWaktu)->nama_bulan,
                 'count' => $item1->count,
-                'year' => optional($time)->tahun,
-                'quartal' => optional($time)->kuartal,
-                'month' => optional($time)->nama_bulan,
-                'day' => optional($time)->hari,
-                'date' => optional($time)->tanggal
             ];
+        }else{
+            $waktu = DimWaktu::where('sk_waktu', $item1->id_waktu)->first();
+            
+            return[
+                'id_waktu' => $item1->id_waktu,
+                'count' => $item1->count,
+                'tahun' => optional($waktu)->tahun,
+                'kuartal' => optional($waktu)->kuartal,
+                'nama_bulan' => optional($waktu)->nama_bulan,
+                'hari' => optional($waktu)->hari,
+            ];
+        }
         });
     
         return response()->json($timeData);
