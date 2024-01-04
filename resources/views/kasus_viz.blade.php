@@ -271,7 +271,8 @@
                                 monthOption.value = monthNames[i];
                                 monthOption.text = monthNames[i];
                                 dropdown.add(monthOption);
-                                }
+                            }
+
                         
 
                         });
