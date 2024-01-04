@@ -17,6 +17,6 @@ class DimPartaiVoted extends Model
     // Define the one-to-many relationship with UserVote table
     public function user_partai_vote()
     {
-        return $this->hasMany(FactVotes::class, 'sk_vote', 'sk_vote');
+        return $this->hasMany(FactVotes::class, 'sk_vote', 'id_vote');
     }
 }

@@ -17,6 +17,6 @@ class DimAdmin extends Model
     // Define the one-to-one relationship with UserVote table
     public function user_admin()
     {
-        return $this->hasMany(FactVotes::class, 'sk_admin', 'sk_admin');
+        return $this->hasMany(FactVotes::class, 'sk_admin', 'id_admin');
     }
 }

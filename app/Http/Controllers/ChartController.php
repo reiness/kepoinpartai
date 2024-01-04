@@ -33,20 +33,20 @@ class ChartController extends Controller
 }
     public function getTimeData(Request $request)
 {
-    $selectedMonth = $request->input('nama_bulan');
+    $selectedDay = $request->input('hari');
 
-    $timeData = FactVotes::select('sk_waktu')
+    $timeData = FactVotes::select('id_waktu')
     ->selectRaw('count(*) as count')
-    ->when($selectedMonth, function($query_month) use ($selectedMonth){
-        $query_month->whereHas('dimWaktu', function($subquery) use ($selectedMonth){
-           $subquery->where('nama_bulan', $selectedMonth);
+    ->when($selectedDay, function($query_day) use ($selectedDay){
+        $query_day->whereHas('dimWaktu', function($subquery) use ($selectedDay){
+           $subquery->where('hari', $selectedDay);
         });
     })
-    ->groupBy('sk_waktu')
+    ->groupBy('id_waktu')
     ->get();
 
     $timeData = $timeData->map(function($item1){
-        $time = DimWaktu::where('sk_waktu', $item1->sk_waktu)->first();
+        $time = DimWaktu::where('sk_waktu', $item1->id_waktu)->first();
     return [
                 'sk_waktu' => $item1->sk_waktu,
                 'count' => $item1->count,

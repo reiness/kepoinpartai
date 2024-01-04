@@ -9,10 +9,10 @@ class FactVotes extends Model
 {
     protected $connection = 'secondary_mysql';
     protected $fillable = [
-        'sk_tempat',
-        'sk_vote',
-        'sk_waktu',
-        'sk_admin',
+        'id_tempat',
+        'id_vote',
+        'id_waktu',
+        'id_admin',
         'username',
         'user_email'
     ];
@@ -20,18 +20,18 @@ class FactVotes extends Model
     // Define the relationship with User table
     public function user_admin()
     {
-        return $this->belongsTo(DimAdmin::class, 'sk_admin', 'sk_admin');
+        return $this->belongsTo(DimAdmin::class, 'sk_admin', 'id_admin');
     }
     public function user_partai_vote()
     {
-        return $this->belongsTo(DimPartaiVoted::class, 'sk_vote', 'sk_vote');
+        return $this->belongsTo(DimPartaiVoted::class, 'sk_vote', 'id_vote');
     }
     public function user_tempat()
     {
-        return $this->belongsTo(DimTempat::class, 'sk_tempat', 'sk_tempat');
+        return $this->belongsTo(DimTempat::class, 'sk_tempat', 'id_tempat');
     }
     public function dimWaktu()
     {
-        return $this->hasMany(DimWaktu::class, 'sk_waktu', 'sk_waktu');
+        return $this->hasMany(DimWaktu::class, 'sk_waktu', 'id_waktu');
     }
 }
