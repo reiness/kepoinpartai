@@ -560,8 +560,7 @@
 
 
 
-
-     document.addEventListener("DOMContentLoaded", function () {
+        document.addEventListener("DOMContentLoaded", function () {
     // Add an event listener to the dropdown
     var provinceDropdown = document.getElementById('provinceDropdown');
 
@@ -579,28 +578,29 @@
         // You may want to trigger the visualization update here if needed
         updateLocationVisualization();
     }
-
-    document.addEventListener("DOMContentLoaded", function () {
-            //Adding an even listener to the dropdown
-            var monthDropdown = document.getElementById('monthDropdown');
-
-            monthDropdown.addEventListener('change', function(){
-                //Calling the function when the dropdown changes
-                updateTimeVisualization();
-            });
-
-            //Calling the function once the document is loaded
-            updateTimeVisualization();
-
-            //Checking if the selected value is empty and setting it to the default value if necessary
-            if(!monthDropdown.value){
-                monthDropdown.value = 'All Available Days';
-                //Might want to trigger the visualization update if needed
-                updateTimeVisualization();
-            }
-        });
-
 });
+
+// Separated from the outer listener
+document.addEventListener("DOMContentLoaded", function () {
+    //Adding an even listener to the dropdown
+    var monthDropdown = document.getElementById('monthDropdown');
+
+    monthDropdown.addEventListener('change', function(){
+        //Calling the function when the dropdown changes
+        updateTimeVisualization();
+    });
+
+    //Calling the function once the document is loaded
+    updateTimeVisualization();
+
+    //Checking if the selected value is empty and setting it to the default value if necessary
+    if(!monthDropdown.value){
+        monthDropdown.value = 'All Available Days';
+        //Might want to trigger the visualization update if needed
+        updateTimeVisualization();
+    }
+});
+
 
 </script>
 @endsection
