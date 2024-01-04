@@ -27,18 +27,22 @@ class RegisterController extends Controller
             'username' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'province' => ['required', 'string'],
+            // Remove 'city' validation rule
         ]);
     }
 
-
     protected function create(array $data)
     {
-        $this->validator($data, 'users')->validate(); // 'users' is the name of the users table
+        $this->validator($data)->validate();
 
+        // Adjust the User::create method to handle province and city dynamically
         return User::create([
             'username' => $data['username'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+            'province' => $data['province'],
+            'city' => $data['city'], // Make sure 'city' is set in the $data array
         ]);
     }
 }
