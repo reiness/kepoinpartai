@@ -32,6 +32,7 @@ Route::get('/logout', [App\Http\Controllers\Auth\LoginController::class, 'logout
 // Route::get('/vote/{id}', [VoteController::class, 'showIdPartai']);
 Route::get('/vote', [VoteController::class, 'index'])->name('vote');
 Route::post('/vote', [VoteController::class, 'vote'])->name('vote.vote');
+Route::post('/vote/revote', [VoteController::class, 'revote'])->name('vote.revote');
 Route::get('/vote/check', [VoteController::class, 'check'])->name('vote.check');
 
 Route::get('/partai_all', function () {

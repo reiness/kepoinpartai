@@ -5,50 +5,73 @@ namespace App\Http\Controllers;
 use App\Models\ProfilePartai;
 use App\Models\UserVote;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class VoteController extends Controller
 {
     public function index()
     {
-        // Retrieve data from the ProfilePartai model and pass it to the view
         $partaiData = ProfilePartai::all();
-
         return view('vote', ['partaiData' => $partaiData]);
     }
 
     public function vote(Request $request)
-{
-    // Get the user's user_email (you may need to modify this part)
-    $userEmail = auth()->user()->email;
+    {
+        $userEmail = Auth::user()->email;
+        $idPartai = $request->input('id_partai');
 
-    // Check if the user has already voted
+        $existingVote = UserVote::where('user_email', $userEmail)->first();
+
+        if ($existingVote) {
+            $existingVote->update([
+                'id_partai' => null, // Set the existing id_partai to null
+            ]);
+        }
+
+        UserVote::create([
+            'user_email' => $userEmail,
+            'id_partai' => $idPartai,
+        ]);
+
+        return response()->json(['message' => 'Vote successful']);
+    }
+
+    public function revote(Request $request)
+{
+    $userEmail = Auth::user()->email;
+    $idPartai = $request->input('id_partai');
+
     $existingVote = UserVote::where('user_email', $userEmail)->first();
 
     if ($existingVote) {
-        return response()->json(['message' => 'Vote failed']);
+        // Update the existing vote
+        $existingVote->update([
+            'id_partai' => $idPartai,
+        ]);
+
+        return response()->json(['message' => 'Vote updated successfully']);
+    } else {
+        // Create a new vote
+        UserVote::create([
+            'user_email' => $userEmail,
+            'id_partai' => $idPartai,
+        ]);
+
+        return response()->json(['message' => 'Vote successful']);
     }
-
-    // If the user hasn't voted, insert the vote into the user_vote table
-    UserVote::create([
-        'user_email' => $userEmail, // Make sure this matches your actual column name
-        'id_partai' => $request->input('id_partai'),
-    ]);
-
-    return response()->json(['message' => 'Vote successful']);
 }
 
-public function check(Request $request)
-    {
-        // Get the user's user_email (you may need to modify this part)
-        $userEmail = auth()->user()->email;
         
-        // Check if the user has already voted for the specified id_partai
+
+    public function check(Request $request)
+    {
+        $userEmail = Auth::user()->email;
         $idPartai = $request->input('id_partai');
+
         $alreadyVoted = UserVote::where('user_email', $userEmail)
             ->where('id_partai', $idPartai)
             ->exists();
 
         return response()->json(['alreadyVoted' => $alreadyVoted]);
     }
-
 }

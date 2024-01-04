@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers\Auth;
 
-use Illuminate\Support\Facades\Validator;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
+
 
 class RegisterController extends Controller
 {
@@ -30,15 +31,16 @@ class RegisterController extends Controller
         ]);
     }
 
-
     protected function create(array $data)
     {
-        $this->validator($data, 'users')->validate(); // 'users' is the name of the users table
-
         return User::create([
             'username' => $data['username'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+            'city' => 'Surabaya', // Set default city here
+            'province' => 'East Java', // Set default province here
         ]);
     }
 }
+
+
