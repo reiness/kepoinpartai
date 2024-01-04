@@ -43,7 +43,9 @@ Route::get('/kasus_viz', function () {
 })->name('kasus_viz');
 
 
+// CHARTS
 Route::get('/getChartData', [ChartController::class, 'getChartData'])->name('chart.data');
+Route::get('/chart/location-data', [ChartController::class, 'getLocationData'])->name('chart.location-data');
 
 
 // Route::get('/vote', function () {
@@ -119,6 +121,7 @@ Route::get('/partai/PAN', function () {
 
     return view('partai.PAN', ['image' => 'image_12.png', 'profile_PAN' => $profile_PAN]);
 })->name('partai.PAN');
+
 
 
 Route::get('/partai/NasDem', function () {
@@ -255,3 +258,11 @@ Route::get('/partai/pu', function () {
                     ->first();
     return view('partai.pu', ['image' => 'image_18.png', 'profile_pu' => $profile_pu]);
 })->name('partai.pu');
+
+Route::get('/partai/Dropdown', function () {
+    $profile_PAN = DB::table('profile_partai')
+                    ->where('nama_partai', 'Partai Amanat Nasional (PAN)')
+                    ->first();
+
+    return view('partai.PAN', ['image' => 'image_12.png', 'profile_PAN' => $profile_PAN]);
+})->name('partai.PAN');

@@ -19,7 +19,6 @@
     <title>Page Title</title>
 </head>
 <body>
-    <!-- Your HTML content here -->
 
     @extends('layouts.app')
 
@@ -30,6 +29,7 @@
                 <div class="card">
                     <div class="card-header">{{ __('Kasus Viz') }}</div>
                     <div class="card-body">
+                        <!-- Your card body content here -->
                     </div>
                 </div>
             </div>
@@ -55,6 +55,21 @@
             <h1>Visualisasi Korupsi</h1>
             <canvas id="nominalKasusKorupsi" width="1600" height="900"></canvas>
         </div>
+    </section>
+
+    <section>
+        <div class="container-card">
+            <h1>Location Visualization</h1>
+            <label for="provinceDropdown">Select Province:</label>
+            <select id="provinceDropdown" onchange="updateLocationVisualization()">
+                {{-- <option value="">All Provinces</option> --}}
+                <option value="All Provinces" selected>All Provinces</option>
+                <!-- Populate options dynamically based on data from the server -->
+            </select>
+            <canvas id="locationChart" width="1600" height="900"></canvas>
+        </div>
+    </section>
+
     </section>
 
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
@@ -207,12 +222,151 @@
                         }
                     }
                 });
+
+                // LOCATION HERE
+                // Fetch province data for the dropdown
+                axios.get('{{ route('chart.location-data') }}')
+                    .then(function (response) {
+                        var provinces = response.data.map(function (item) {
+                            return item.province;
+                        });
+
+                        // Remove duplicates
+                        provinces = [...new Set(provinces)];
+                        console.log(provinces);
+
+                        // Populate dropdown options
+                        var dropdown = document.getElementById('provinceDropdown');
+                        dropdown.innerHTML = ''; // Clear existing options
+                        var defaultOption = document.createElement('option');
+                        defaultOption.value = '';
+                        defaultOption.text = 'All Provinces';
+                        dropdown.add(defaultOption);
+                        provinces.forEach(function (province) {
+                            var option = document.createElement('option');
+                            option.value = province;
+                            option.text = province;
+                            dropdown.add(option);
+                        });
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    });
             })
             .catch(function (error) {
                 console.log(error);
             });
-    </script>
-    @endsection
+
+        // Function for updating location visualization
+        var iter = 0;
+        var locationChart;
+
+        // Use a flag to ensure the block of code runs only once
+        var codeExecuted = false;
+
+        function updateLocationVisualization() {
+            var selectedProvince = document.getElementById('provinceDropdown').value;
+
+            axios.get('{{ route('chart.location-data') }}', {
+                params: {
+                    province: selectedProvince
+                }
+            })
+            .then(function (response) {
+                var locationData = response.data;
+
+                var labels, count;
+
+                if (selectedProvince === 'All Provinces') {
+                    // If 'All Provinces' is selected, group counts by province
+                    var groupedData = {};
+                    locationData.forEach(function (item) {
+                        var key = item.province || 'Unknown';
+                        if (!groupedData[key]) {
+                            groupedData[key] = 0;
+                        }
+                        groupedData[key] += item.count;
+                    });
+
+                    labels = Object.keys(groupedData);
+                    count = Object.values(groupedData);
+                    console.log(selectedProvince);
+                } else {
+                    // If a specific province is selected, use cities as labels
+                    labels = locationData.map(function (item) {
+                        return item.city;
+                    });
+                    count = locationData.map(function (item) {
+                        return item.count;
+                    });
+                }
+
+                var ctxLocation = document.getElementById('locationChart').getContext('2d');
+
+                // Destroy existing chart from the second time onward
+                if (iter > 0 && codeExecuted) {
+                    locationChart.destroy();
+                }
+
+                // Create a new chart instance
+                locationChart = new Chart(ctxLocation, {
+                    type: 'bar',
+                    data: {
+                        labels: labels,
+                        datasets: [{
+                            label: 'User Count',
+                            data: count,
+                            backgroundColor: [
+                                'rgba(0, 123, 255, 0.2)',
+                                'rgba(0, 123, 255, 0.4)',
+                                'rgba(0, 123, 255, 0.6)',
+                                'rgba(0, 123, 255, 0.8)',
+                                'rgba(0, 123, 255, 1)',
+                            ],
+                            borderColor: 'rgba(0, 123, 255, 1)',
+                            borderWidth: 1,
+                            borderRadius: 5,
+                        }]
+                    },
+                    options: {
+                        scales: {
+                            x: {
+                                maxRotation: 0,
+                                minRotation: 0,
+                                autoSkip: true,
+                                maxTicksLimit: 10,
+                            },
+                            y: {
+                                beginAtZero: true,
+                            }
+                        },
+                        plugins: {
+                            legend: {
+                                display: false,
+                            }
+                        }
+                    }
+                });
+
+                iter += 1;
+                codeExecuted = true;
+
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+        }
+
+
+
+
+
+    // Call the function once the document is loaded
+    document.addEventListener("DOMContentLoaded", function () {
+        updateLocationVisualization();
+    });
+</script>
+@endsection
 
 </body>
 </html>
