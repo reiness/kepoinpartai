@@ -21,6 +21,8 @@ class User extends Authenticatable
         'username',
         'email',
         'password',
+        'province',
+        'city',
     ];
 
     /**
@@ -61,4 +63,3 @@ class User extends Authenticatable
     }
 
 }
-

@@ -7,6 +7,7 @@ use App\Http\Controllers\VoteController;
 use App\Http\Controllers\ProfilePartaiController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ChartController;
+use App\Http\Controllers\CityController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -43,6 +44,7 @@ Route::get('/kasus_viz', function () {
 })->name('kasus_viz');
 
 
+Route::get('/api/cities/{province}', [CityController::class, 'getCitiesByProvince']);
 // CHARTS
 Route::get('/getChartData', [ChartController::class, 'getChartData'])->name('chart.data');
 Route::get('/chart/location-data', [ChartController::class, 'getLocationData'])->name('chart.location-data');
