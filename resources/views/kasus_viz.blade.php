@@ -71,9 +71,7 @@
         </div>
     </section>
 
-    </section>
-
-    <section>
+<section>
         <div class="container-card">
             <h1>When did our voters vote?</h1>
             <label for="monthDropdown">Select Month:</label>
@@ -276,6 +274,62 @@
                         console.log(error);
                     });
 
+
+                //Time Visualization
+                //Getting month data for the dropdown
+                axios.get('{{ route('chart.timedata') }}')
+                    .then(function (response) {
+                        var months = response.data.map(function (item1) {
+                            return item1.nama_bulan; //Sketchy
+                        });
+
+                        //Duplicate removal
+                        months = [...new Set(months)];
+
+                        // Getting the first month index and replacing it with 'All Months"
+                        var firstMonthIndex = months.findIndex(function(nama_bulan){ //Sketchy month.findIndex
+                            return nama_bulan !== 'All Months';
+                        });
+
+                        if(firstMonthIndex !== -1){
+                            months[firstMonthIndex] = 'All Months';
+                        }
+
+                        console.log(months);
+
+                        // Add 'All Months' to the dropdown
+                
+                        // Populate dropdown options
+                        var dropdown = document.getElementById('monthDropdown');
+                        dropdown.innerHTML = ''; // Clear existing options
+
+                        
+                        months.forEach(function(nama_bulan){
+                            var option = document.createElement('option');
+                            option.value = nama_bulan;
+                            option.text = nama_bulan;
+                            dropdown.add(option);
+
+
+                            var monthNames = [
+                                'Januari', 'Februari', 'Maret', 'April',
+                                'Mei', 'Juni', 'Juli', 'Agustus',
+                                'September', 'Oktober', 'November', 'Desember'
+                            ];
+
+                            for (var i = 0; i < monthNames.length; i++) {
+                                var monthOption = document.createElement('option');
+                                monthOption.value = monthNames[i];
+                                monthOption.text = monthNames[i];
+                                dropdown.add(monthOption);
+                            }
+
+                        });
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    });
+
             })
             .catch(function (error) {
                 console.log(error);
@@ -287,6 +341,15 @@
 
         // Use a flag to ensure the block of code runs only once
         var codeExecuted = false;
+
+        
+        // FOR TIME
+        //To Check
+        var iter1 = 0;
+        var timeChart;
+
+        // Using a flag to ensure the block of code runs only once
+        var codeExecuted1 = false;
 
         function updateLocationVisualization() {
             var selectedProvince = document.getElementById('provinceDropdown').value;
@@ -380,75 +443,12 @@
                 iter += 1;
                 codeExecuted = true;
 
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+        }
 
-            //Time Visualization
-            //Getting month data for the dropdown
-            axios.get('{{ route('chart.timedata') }}')
-                    .then(function (response) {
-                        var months = response.data.map(function (item1) {
-                            return item1.nama_bulan; //Sketchy
-                        });
-
-                        //Duplicate removal
-                        months = [...new Set(months)];
-
-                        // Getting the first month index and replacing it with 'All Months"
-                        var firstMonthIndex = months.findIndex(function(nama_bulan){ //Sketchy month.findIndex
-                            return nama_bulan !== 'All Months';
-                        });
-
-                        if(firstMonthIndex !== -1){
-                            months[firstMonthIndex] = 'All Months';
-                        }
-
-                        console.log(months);
-
-                        // Add 'All Months' to the dropdown
-                
-                        // Populate dropdown options
-                        var dropdown = document.getElementById('monthDropdown');
-                        dropdown.innerHTML = ''; // Clear existing options
-
-                        
-                        months.forEach(function(nama_bulan){
-                            var option = document.createElement('option');
-                            option.value = nama_bulan;
-                            option.text = nama_bulan;
-                            dropdown.add(option);
-
-
-                            var monthNames = [
-                                'Januari', 'Februari', 'Maret', 'April',
-                                'Mei', 'Juni', 'Juli', 'Agustus',
-                                'September', 'Oktober', 'November', 'Desember'
-                            ];
-
-                            for (var i = 0; i < monthNames.length; i++) {
-                                var monthOption = document.createElement('option');
-                                monthOption.value = monthNames[i];
-                                monthOption.text = monthNames[i];
-                                dropdown.add(monthOption);
-                            }
-
-                        
-
-                        });
-                    })
-                    .catch(function (error) {
-                        console.log(error);
-                    });
-        })
-        .catch(function (error) {
-            console.log(error);
-        });
-
-
-        //To Check
-        var iter1 = 0;
-        var timeChart;
-
-        // Using a flag to ensure the block of code runs only once
-        var codeExecuted1 = false;
         //Time update
         function updateTimeVisualization() {
             var selectedMonth = document.getElementById('monthDropdown').value;
@@ -555,13 +555,32 @@
                 .catch(function (error) {
                     console.log(error);
                 });
-        };
+        }
 
 
 
 
 
-        document.addEventListener("DOMContentLoaded", function () {
+     document.addEventListener("DOMContentLoaded", function () {
+    // Add an event listener to the dropdown
+    var provinceDropdown = document.getElementById('provinceDropdown');
+
+    provinceDropdown.addEventListener('change', function () {
+        // Call the function when the dropdown changes
+        updateLocationVisualization();
+    });
+
+    // Call the function once the document is loaded
+    updateLocationVisualization();
+
+    // Check if the selected value is empty and set it to the default value if needed
+    if (!provinceDropdown.value) {
+        provinceDropdown.value = 'All Available Cities';
+        // You may want to trigger the visualization update here if needed
+        updateLocationVisualization();
+    }
+
+    document.addEventListener("DOMContentLoaded", function () {
             //Adding an even listener to the dropdown
             var monthDropdown = document.getElementById('monthDropdown');
 
@@ -580,8 +599,9 @@
                 updateTimeVisualization();
             }
         });
-    };
-    
+
+});
+
 </script>
 @endsection
 
