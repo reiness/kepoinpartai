@@ -59,12 +59,13 @@
 
     <section>
         <div class="container-card">
-            <h1>Location Visualization</h1>
+            <h1>Where do our voters come from?</h1>
             <label for="provinceDropdown">Select Province:</label>
-            <select id="provinceDropdown" onchange="updateLocationVisualization()">
-                {{-- <option value="">All Provinces</option> --}}
+            {{-- <select id="provinceDropdown" onchange="updateLocationVisualization()"> --}}
+            <select id ='provinceDropdown'>
+               
                 <option value="All Provinces" selected>All Provinces</option>
-                <!-- Populate options dynamically based on data from the server -->
+                
             </select>
             <canvas id="locationChart" width="1600" height="900"></canvas>
         </div>
@@ -233,15 +234,21 @@
 
                         // Remove duplicates
                         provinces = [...new Set(provinces)];
+                        
+                        // Find the index of the first province and replace it with 'All Provinces'
+                        var firstProvinceIndex = provinces.findIndex(function(province) {
+                            return province !== 'All Provinces';
+                        });
+
+                        if (firstProvinceIndex !== -1) {
+                            provinces[firstProvinceIndex] = 'All Provinces';
+                        }
+
                         console.log(provinces);
 
                         // Populate dropdown options
                         var dropdown = document.getElementById('provinceDropdown');
                         dropdown.innerHTML = ''; // Clear existing options
-                        var defaultOption = document.createElement('option');
-                        defaultOption.value = '';
-                        defaultOption.text = 'All Provinces';
-                        dropdown.add(defaultOption);
                         provinces.forEach(function (province) {
                             var option = document.createElement('option');
                             option.value = province;
@@ -252,6 +259,7 @@
                     .catch(function (error) {
                         console.log(error);
                     });
+
             })
             .catch(function (error) {
                 console.log(error);
@@ -266,6 +274,7 @@
 
         function updateLocationVisualization() {
             var selectedProvince = document.getElementById('provinceDropdown').value;
+            // console.log(selectedProvince.type);
 
             axios.get('{{ route('chart.location-data') }}', {
                 params: {
@@ -276,12 +285,14 @@
                 var locationData = response.data;
 
                 var labels, count;
-
-                if (selectedProvince === 'All Provinces') {
+                // console.log(selectedProvince)
+                if (selectedProvince === 'All Provinces' || selectedProvince === ' ') {
                     // If 'All Provinces' is selected, group counts by province
+                    console.log('ALL PROVINCES SELECTED !!!')
                     var groupedData = {};
                     locationData.forEach(function (item) {
                         var key = item.province || 'Unknown';
+
                         if (!groupedData[key]) {
                             groupedData[key] = 0;
                         }
@@ -291,8 +302,10 @@
                     labels = Object.keys(groupedData);
                     count = Object.values(groupedData);
                     console.log(selectedProvince);
-                } else {
+                    console.log('debug1')
+                } else if (selectedProvince !== 'All Provinces' && selectedProvince !== ' ') {
                     // If a specific province is selected, use cities as labels
+                    // console.log('debug1')
                     labels = locationData.map(function (item) {
                         return item.city;
                     });
@@ -361,10 +374,26 @@
 
 
 
-    // Call the function once the document is loaded
-    document.addEventListener("DOMContentLoaded", function () {
+        document.addEventListener("DOMContentLoaded", function () {
+    // Add an event listener to the dropdown
+    var provinceDropdown = document.getElementById('provinceDropdown');
+
+    provinceDropdown.addEventListener('change', function () {
+        // Call the function when the dropdown changes
         updateLocationVisualization();
     });
+
+    // Call the function once the document is loaded
+    updateLocationVisualization();
+
+    // Check if the selected value is empty and set it to the default value if needed
+    if (!provinceDropdown.value) {
+        provinceDropdown.value = 'All Available Cities';
+        // You may want to trigger the visualization update here if needed
+        updateLocationVisualization();
+    }
+});
+
 </script>
 @endsection
 
