@@ -37,7 +37,7 @@
 </div>
 
 <!-- Modal -->
-<div class="modal fade" id="partaiModal" tabindex="-1" role="dialog" aria-labelledby="partaiModalLabel" aria-hidden="true">
+<div class="modal fade" id="partaiModal" tabindex="-1" role="dialog" aria-labelledby="partaiModalLabel"aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -50,6 +50,7 @@
                 <p id="idPartaiText"></p>
                 <p id="namaPartaiText"></p>
                 <button id="voteButton" class="btn btn-primary">Vote</button>
+                <button id="revoteButton" class="btn btn-primary" style="display:none;">Revote</button>
             </div>
         </div>
     </div>
@@ -59,79 +60,114 @@
 
 <!-- Include Bootstrap JavaScript (you already have this) -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Your custom script -->
+<!-- Add this code in your blade file where JavaScript is defined -->
 <script>
-    jQuery(document).ready(function($) {
-        console.log('Document ready!');  // Debug
-        var idPartai = null;
-        var namaPartai = null;
-        var hasVoted = false;
+    $(document).ready(function () {
+        let idPartai = null;
+        let hasVoted = false;
+
+        function updateVoteButton() {
+            if (hasVoted) {
+                $('#voteButton').hide();
+                $('#revoteButton').show();
+            } else {
+                $('#voteButton').show();
+                $('#revoteButton').hide();
+            }
+        }
+
+        // Function to update modal content based on voting status
+        function updateModalContent() {
+            if (hasVoted) {
+                $('#namaPartaiText').text('Are you sure you want to change your vote to this?');
+                $('#revoteButton').show();
+            } else {
+                $('#namaPartaiText').text('Are you sure you want to vote for this?');
+                $('#voteButton').show();
+            }
+        }
 
         // Check if the user has already voted
-        jQuery.ajax({
+        $.ajax({
             type: 'GET',
             url: '{{ route('vote.check') }}',
-            success: function(response) {
+            success: function (response) {
                 hasVoted = response.alreadyVoted;
-                if (hasVoted) {
-                    // If the user has already voted, hide the Vote button
-                    jQuery('.voteButton').hide();
-                }
+                updateVoteButton();
             },
-            error: function(xhr, status, error) {
-                console.log(xhr.responseText); // Log any error messages
+            error: function (xhr, status, error) {
+                console.log(xhr.responseText);
             }
         });
 
-        jQuery('.select-image').click(function() {
-            idPartai = jQuery(this).data('id-partai');
-            namaPartai = jQuery(this).data('nama-partai');
-
-            // Display the ID Partai and Nama Partai in the modal
-            jQuery('#idPartaiText').text('ID Partai: ' + idPartai);
-            if (hasVoted) {
-                jQuery('#namaPartaiText').text('You have already voted and cannot change your choice.');
-                jQuery('#voteButton').hide();
-            } else {
-                jQuery('#namaPartaiText').text('Apakah anda yakin ingin memilih ' + namaPartai + '?');
-                jQuery('#voteButton').show();
-            }
+        // Handle click on image selection
+        $('.select-image').click(function () {
+            idPartai = $(this).data('id-partai');
+            updateModalContent();
         });
 
-        jQuery('#voteButton').click(function() {
-            if (hasVoted) {
-                return;
-            }
-
-            // Make an AJAX request to vote
-            jQuery.ajax({
+        // Function to submit vote (used by both Vote and Revote buttons)
+        function submitVote() {
+            $.ajax({
                 type: 'POST',
                 url: '{{ route('vote.vote') }}',
                 data: {
                     id_partai: idPartai
                 },
                 headers: {
-                    'X-CSRF-TOKEN': jQuery('meta[name="csrf-token"]').attr('content')
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },
-                success: function(response) {
-                    if (response.success) {
-                        // Update the modal content with a success message
-                        jQuery('#namaPartaiText').text('Vote successful for ' + namaPartai);
-                        jQuery('#voteButton').hide(); // Hide the vote button
+                success: function (response) {
+                    if (response.message === 'Vote updated successfully' || response.message === 'Vote successful') {
+                        $('#namaPartaiText').text('Vote successful');
                         hasVoted = true;
+                        updateVoteButton();
                     } else {
-                        // Update the modal content with a failure message
-                        jQuery('#namaPartaiText').text('You have already voted for ' + namaPartai);
-                        jQuery('#voteButton').hide(); // Hide the vote button
-                        hasVoted = true;
+                        $('#namaPartaiText').text('Failed to vote');
                     }
+                    $('#voteButton, #revoteButton').hide();
                 },
-                error: function(xhr, status, error) {
-                    console.log(xhr.responseText); // Log any error messages
+                error: function (xhr, status, error) {
+                    console.log(xhr.responseText);
+                }
+            });
+        }
+
+        // Handle click on Vote button
+        $('#voteButton').click(function () {
+            submitVote();
+        });
+
+        // Handle click on Revote button
+        $('#revoteButton').click(function () {
+            // Submit the revote
+            $.ajax({
+                type: 'POST',
+                url: '{{ route('vote.revote') }}',
+                data: {
+                    id_partai: idPartai
+                },
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                success: function (response) {
+                    if (response.message === 'Vote updated successfully') {
+                        $('#namaPartaiText').text('Vote updated successfully');
+                        updateVoteButton();
+                    } else {
+                        $('#namaPartaiText').text('Failed to revote');
+                    }
+                    $('#voteButton, #revoteButton').hide();
+                },
+                error: function (xhr, status, error) {
+                    console.log(xhr.responseText);
                 }
             });
         });
     });
 </script>
+
 
 @endsection
 </body>
